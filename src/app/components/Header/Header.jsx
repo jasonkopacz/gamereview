@@ -1,24 +1,24 @@
 'use client';
 import React from 'react';
 import clsx from 'clsx';
-import { Sun, Moon } from 'react-feather';
+import { Rss, Sun, Moon } from 'react-feather';
 import Cookie from 'js-cookie';
 
 import {
   COLOR_THEME_COOKIE_NAME,
   LIGHT_TOKENS,
   DARK_TOKENS,
-} from '../../constants';
+} from '../../constants'
 
 import VisuallyHidden from '../VisuallyHidden/VisuallyHidden';
 
 import styles from './Header.module.css';
 
-function Header(
-  {initialTheme,
+function Header({
+  initialTheme,
   className,
-  ...delegated}
-) {
+  ...delegated
+}) {
   const [theme, setTheme] =
     React.useState(initialTheme);
 
@@ -57,7 +57,7 @@ function Header(
           onClick={handleToggleTheme}
         >
           {theme === 'light' ? (
-            <Sun size="1.5rem" color="red"/>
+            <Sun size="1.5rem" />
           ) : (
             <Moon size="1.5rem" />
           )}

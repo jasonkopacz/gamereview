@@ -1,4 +1,6 @@
 import React from 'react';
+import clsx from 'clsx';
+import styles from './VisuallyHidden.module.css'
 
 function VisuallyHidden({
   as: Element = 'span',
@@ -8,7 +10,7 @@ function VisuallyHidden({
 }) {
   return (
     <Element
-      className={className}
+    className={clsx(styles.wrapper, className)}
       {...delegated}
     >
       {children}

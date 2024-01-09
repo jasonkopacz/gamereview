@@ -13,11 +13,11 @@ import {
   DARK_TOKENS,
 } from './constants';
 
-import './styles.css';
+import Header from './components/Header/Header';
+import Footer from './components/Footer/Footer';
+import RespectMotionPreferences from './components/RespectMotionPreferences/RespectMotionPreferences';
 
-import Header from '@/components/Header'
-import Footer from '@/components/Footer'
-import RespectMotionPreferences from '@/components/RespectMotionPreferences';
+import './styles.css';
 
 const mainFont = Work_Sans({
   subsets: ['latin'],
@@ -34,7 +34,7 @@ const monoFont = Spline_Sans_Mono({
 
 export const metadata = {
   title: BLOG_TITLE,
-  description: 'A wonderful blog about JavaScript',
+  description: 'BIG DAWG STATUS',
 };
 
 function RootLayout({ children }) {
@@ -59,7 +59,7 @@ function RootLayout({ children }) {
         }
       >
         <body>
-          <Header initialTheme={theme} className='' delegated=''/>
+          <Header initialTheme={theme}/>
           <main>{children}</main>
           <Footer />
         </body>

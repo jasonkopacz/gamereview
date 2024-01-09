@@ -1,4 +1,4 @@
-export const BLOG_TITLE = 'BIG DAW SHIT';
+export const BLOG_TITLE = 'BIG DAWG SHIT';
 export const COLOR_THEME_COOKIE_NAME = 'color-theme';
 
 export const LIGHT_COLORS = {
