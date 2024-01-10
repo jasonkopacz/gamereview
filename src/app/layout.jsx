@@ -13,11 +13,12 @@ import {
   DARK_TOKENS,
 } from './constants';
 
-import Header from './components/Header/Header';
-import Footer from './components/Footer/Footer';
-import RespectMotionPreferences from './components/RespectMotionPreferences/RespectMotionPreferences';
+import Header from './(components)/Header/Header';
+import Footer from './(components)/Footer/Footer';
+import RespectMotionPreferences from './(components)/RespectMotionPreferences/RespectMotionPreferences';
 
 import './styles.css';
+import Cookies from 'js-cookie';
 
 const mainFont = Work_Sans({
   subsets: ['latin'],
@@ -42,6 +43,8 @@ function RootLayout({ children }) {
     COLOR_THEME_COOKIE_NAME
   );
   const theme = savedTheme?.value || 'light';
+  Cookies.set(COLOR_THEME_COOKIE_NAME, savedTheme?.value || 'light')
+
 
   return (
     <RespectMotionPreferences>

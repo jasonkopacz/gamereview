@@ -1,6 +1,6 @@
 import React from 'react'
 import styles from './page.module.css'
-import AuthForm from './components/Auth/auth-form'
+import AuthForm from './auth/auth-form'
 
 export default function Home() {
 
