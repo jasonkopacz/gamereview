@@ -45,25 +45,25 @@ function RootLayout({ children }) {
 
   return (
     <RespectMotionPreferences>
-      <html
-        lang="en"
-        className={clsx(
-          mainFont.variable,
-          monoFont.variable
-        )}
-        data-color-theme={theme}
-        style={
-          theme === 'light'
-            ? LIGHT_TOKENS
-            : DARK_TOKENS
-        }
-      >
-        <body>
-          <Header initialTheme={theme}/>
-          <main>{children}</main>
-          <Footer />
-        </body>
-      </html>
+        <html
+          lang="en"
+          className={clsx(
+            mainFont.variable,
+            monoFont.variable
+            )}
+            data-color-theme={theme}
+            style={
+              theme === 'light'
+              ? LIGHT_TOKENS
+              : DARK_TOKENS
+            }
+            >
+          <body>
+            <Header initialTheme={theme}/>
+            <main>{children}</main>
+            <Footer />
+          </body>
+        </html>
     </RespectMotionPreferences>
   );
 }
