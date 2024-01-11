@@ -1,0 +1,21 @@
+name,slug,released,background_image,rating,reviews_text_count,metacritic,esrb_rating
+Grand Theft Auto V,grand-theft-auto-v,2013-09-17,https://media.rawg.io/media/games/20a/20aa03a10cda45239fe22d035c0ebe64.jpg,4.47,57,92,mature
+The Witcher 3: Wild Hunt,the-witcher-3-wild-hunt,2015-05-18,https://media.rawg.io/media/games/618/618c2031a07bbff6b4f611f10b6bcdbc.jpg,4.65,70,92,mature
+Portal 2,portal-2,2011-04-18,https://media.rawg.io/media/games/2ba/2bac0e87cf45e5b508f227d281c9252a.jpg,4.61,34,95,everyone-10-plus
+Counter-Strike: Global Offensive,counter-strike-global-offensive,2012-08-21,https://media.rawg.io/media/games/736/73619bd336c894d6941d926bfd563946.jpg,3.57,26,81,mature
+Tomb Raider (2013),tomb-raider,2013-03-05,https://media.rawg.io/media/games/021/021c4e21a1824d2526f925eff6324653.jpg,4.05,13,86,mature
+Portal,portal,2007-10-09,https://media.rawg.io/media/games/7fa/7fa0b586293c5861ee32490e953a4996.jpg,4.51,27,90,teen
+Left 4 Dead 2,left-4-dead-2,2009-11-17,https://media.rawg.io/media/games/d58/d588947d4286e7b5e0e12e1bea7d9844.jpg,4.09,10,89,mature
+The Elder Scrolls V: Skyrim,the-elder-scrolls-v-skyrim,2011-11-11,https://media.rawg.io/media/games/7cf/7cfc9220b401b7a300e409e539c9afd5.jpg,4.42,32,94,mature
+Red Dead Redemption 2,red-dead-redemption-2,2018-10-26,https://media.rawg.io/media/games/511/5118aff5091cb3efec399c808f8c598f.jpg,4.59,76,96,mature
+BioShock Infinite,bioshock-infinite,2013-03-26,https://media.rawg.io/media/games/fc1/fc1307a2774506b5bd65d7e8424664a7.jpg,4.38,22,94,mature
+Borderlands 2,borderlands-2,2012-09-18,https://media.rawg.io/media/games/49c/49c3dfa4ce2f6f140cc4825868e858cb.jpg,4.01,12,89,mature
+Life is Strange,life-is-strange-episode-1-2,2015-01-29,https://media.rawg.io/media/games/562/562553814dd54e001a541e4ee83a591c.jpg,4.12,28,83,mature
+Half-Life 2,half-life-2,2004-11-16,https://media.rawg.io/media/games/b8c/b8c243eaa0fbac8115e0cdccac3f91dc.jpg,4.49,17,96,mature
+BioShock,bioshock,2007-08-21,https://media.rawg.io/media/games/bc0/bc06a29ceac58652b684deefe7d56099.jpg,4.36,25,96,mature
+Destiny 2,destiny-2,2017-09-06,https://media.rawg.io/media/games/34b/34b1f1850a1c06fd971bc6ab3ac0ce0e.jpg,3.54,19,82,teen
+Limbo,limbo,2010-07-21,https://media.rawg.io/media/games/942/9424d6bb763dc38d9378b488603c87fa.jpg,4.15,25,88,teen
+God of War (2018),god-of-war-2,2018-04-20,https://media.rawg.io/media/games/4be/4be6a6ad0364751a96229c56bf69be59.jpg,4.57,68,94,mature
+Fallout 4,fallout-4,2015-11-09,https://media.rawg.io/media/games/d82/d82990b9c67ba0d2d09d4e6fa88885a7.jpg,3.8,19,84,mature
+DOOM (2016),doom,2016-05-13,https://media.rawg.io/media/games/587/587588c64afbff80e6f444eb2e46f9da.jpg,4.38,29,85,mature
+PAYDAY 2,payday-2,2013-08-13,https://media.rawg.io/media/games/73e/73eecb8909e0c39fb246f457b5d6cbbe.jpg,3.51,14,79,adults-only

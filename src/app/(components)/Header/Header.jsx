@@ -1,8 +1,9 @@
 'use client';
 import React from 'react';
 import clsx from 'clsx';
-import { Rss, Sun, Moon } from 'react-feather';
+import { Sun, Moon } from 'react-feather';
 import Cookie from 'js-cookie';
+import Link from 'next/link';
 
 import {
   COLOR_THEME_COOKIE_NAME,
@@ -50,8 +51,8 @@ function Header({
       className={clsx(styles.wrapper, className)}
       {...delegated}
     >
-
       <div className={styles.actions}>
+        <Link href="/" className={styles.action} > Home </ Link >
         <button
           className={styles.action}
           onClick={handleToggleTheme}
