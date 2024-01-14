@@ -1,0 +1,6 @@
+-- insert into games
+--   (name, slug, released, background_image, rating, reviews_text_count, metacritic, esrb_rating)
+-- values
+--   ('Grand Theft Auto V', 'grand-theft-auto-v', '2013-09-17', 'https://media.rawg.io/media/games/20a/20aa03a10cda45239fe22d035c0ebe64.jpg', 4.47, 57, 92, 'mature'),
+-- 	('The Witcher 3: Wild Hunt','the-witcher-3-wild-hunt', '2015-05-18', 'https://media.rawg.io/media/games/618/618c2031a07bbff6b4f611f10b6bcdbc.jpg', 4.65, 70, 92, 'mature'),
+-- 	('Portal 2','portal-2', '2011-04-18','https://media.rawg.io/media/games/2ba/2bac0e87cf45e5b508f227d281c9252a.jpg',4.61,34,95,'everyone-10-plus');

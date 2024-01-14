@@ -63,7 +63,7 @@ function RootLayout({ children }) {
             >
           <body>
             <Header initialTheme={theme}/>
-            <main>{children}</main>
+              <main>{children}</main>
             <Footer />
           </body>
         </html>
