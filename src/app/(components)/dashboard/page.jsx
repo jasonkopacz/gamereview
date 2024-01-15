@@ -7,14 +7,15 @@ export default async function Index() {
     .from('games')
     .select('*');
     return (
-        <div className={styles.wrapper}>
+			<>
+				<h1 className={styles.title}>Popular Titles</h1>
+				<ul className={styles.wrapper}>
 					{games.map((game) => ( 
-						<ul key={game.id} className='row'>
-							<li className='column'>
-									<Game game={game} />
-							</li>
-						</ul>
+						<li className={styles.item} key={game.id}>
+								<Game game={game} />
+						</li>
 					))}
-        </div>
+				</ul>
+			</>
     )
 }

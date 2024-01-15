@@ -17,7 +17,7 @@ export default function AuthForm() {
         appearance={{ theme: ThemeSupa }}
         theme={darkMode}
         showLinks={false}
-        providers={['google', 'facebook', 'twitter']}
+        providers={['google']}
         redirectTo="http://localhost:3000/auth/callback"
         />
     </>

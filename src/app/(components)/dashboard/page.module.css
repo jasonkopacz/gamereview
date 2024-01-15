@@ -1,28 +1,22 @@
 .wrapper {
-    position: relative;
     display: flex;
-    flex-direction: column;
+    flex-flow: row wrap;
     justify-content: space-between;
-    align-items: center;
-    height: var(--header-height);
-    width: 100%;
-    max-width: var(--content-width);
-    padding: 0 var(--viewport-padding);
-    margin-left: auto;
-    margin-right: auto;
-  }
-  
-  .row {
-    display: flex;
-    flex-wrap: wrap;
-    padding: 0 5px;
   }
 
-  .column {
-    flex: 33%;
-    max-width: 33%;
-    padding: 0 5px;
+  .item {
+    display: flex;
+    justify-content: center;
+    flex: 1 1 25%;
+    margin: 10px;
+    text-align: center;
   }
+  
+  .title {
+    display: flex;
+    justify-content: center;
+  }
+
   @media (max-width: 800px) {
     .wrapper {
       flex-direction: column;
