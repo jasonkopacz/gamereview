@@ -8,7 +8,6 @@ export default function AccountForm({ session }) {
   const [fullname, setFullname] = useState(null)
   const [username, setUsername] = useState(null)
   const [website, setWebsite] = useState(null)
-  const [avatar_url, setAvatarUrl] = useState(null)
   const user = session?.user
 
   const getProfile = useCallback(async () => {
@@ -17,7 +16,7 @@ export default function AccountForm({ session }) {
 
       const { data, error, status } = await supabase
         .from('profiles')
-        .select(`full_name, username, website, avatar_url`)
+        .select(`full_name, username, website`)
         .eq('id', user?.id)
         .single()
 
@@ -29,7 +28,6 @@ export default function AccountForm({ session }) {
         setFullname(data.full_name)
         setUsername(data.username)
         setWebsite(data.website)
-        setAvatarUrl(data.avatar_url)
       }
     } catch (error) {
       alert('Error loading user data!')
@@ -42,7 +40,7 @@ export default function AccountForm({ session }) {
     getProfile()
   }, [user, getProfile])
 
-  async function updateProfile({ username, website, avatar_url }) {
+  async function updateProfile({ username, website }) {
     try {
       setLoading(true)
 
@@ -51,7 +49,6 @@ export default function AccountForm({ session }) {
         full_name: fullname,
         username,
         website,
-        avatar_url,
         updated_at: new Date().toISOString(),
       })
       if (error) throw error
@@ -105,14 +102,6 @@ export default function AccountForm({ session }) {
         >
           {loading ? 'Loading ...' : 'Update'}
         </button>
-      </div>
-
-      <div>
-        <form action="/auth/signout" method="post">
-          <button className="button block" type="submit">
-            Sign out
-          </button>
-        </form>
       </div>
     </div>
   )

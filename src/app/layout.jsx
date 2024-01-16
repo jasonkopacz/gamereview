@@ -16,6 +16,7 @@ import {
 import Header from './(components)/header/Header';
 import Footer from './(components)/footer/Footer';
 import RespectMotionPreferences from './(components)/RespectMotionPreferences/RespectMotionPreferences';
+import { supabase } from './database';
 
 import './styles.css';
 import Cookies from 'js-cookie';
@@ -38,13 +39,12 @@ export const metadata = {
   description: 'BIG DAWG STATUS',
 };
 
-function RootLayout({ children }) {
+async function RootLayout({ children }) {
   const savedTheme = cookies().get(
     COLOR_THEME_COOKIE_NAME
   );
   const theme = savedTheme?.value || 'light';
   Cookies.set(COLOR_THEME_COOKIE_NAME, savedTheme?.value || 'light')
-
 
   return (
     <RespectMotionPreferences>
@@ -62,7 +62,7 @@ function RootLayout({ children }) {
             }
             >
           <body>
-            <Header initialTheme={theme}/>
+            <Header initialTheme={theme} />
               <main>{children}</main>
             <Footer />
           </body>

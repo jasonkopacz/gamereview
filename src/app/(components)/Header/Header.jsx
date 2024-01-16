@@ -67,6 +67,11 @@ function Header({
           </VisuallyHidden>
         </button>
       </div>
+      <div className={styles.actions}>
+        <Link href="/dashboard" className={styles.action}> Dashboard </ Link >
+        <Link href="/account" className={styles.action}> Account </ Link >
+        {/* <Link href="/auth/signout" className={styles.action}> Sign Out </ Link > */}
+      </div>
     </header>
   );
 }
