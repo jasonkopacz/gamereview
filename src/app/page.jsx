@@ -3,16 +3,16 @@ import styles from './page.module.css'
 import AuthForm from './auth/auth-form'
 import Dashboard from './(components)/dashboard/page'
 import { supabase } from './database';
-export default async function Home() {
-  const { data, error } = await supabase.auth.getSession()
-  const isLoggedIn = data.session
+import { cookies } from 'next/headers';
+import { parse } from 'cookie';
+import { isLoggedIn } from './utils/isLoggedIn';
 
-  return (
-    <main className={styles.main}>
+export default async function Home() {
+    return (
+      <main className={styles.main}>
       <div className="row">
       <div className="col-6 auth-widget">
-        {isLoggedIn && <Dashboard />}
-       {!isLoggedIn && <AuthForm />}
+        <AuthForm />
       </div>
     </div>
     </main>

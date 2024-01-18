@@ -1,6 +1,9 @@
 .wrapper {
-  display: flex;
+  /* display: flex;
   flex-direction: column;
+  justify-content: center; */
+  margin: auto;
+  width: 50%;
 }
 
 .headerWrapper {

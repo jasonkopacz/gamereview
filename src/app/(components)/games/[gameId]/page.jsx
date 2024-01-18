@@ -1,15 +1,27 @@
-import { supabase } from "@/app/database"
+'use client'
+// import { supabase } from "@/app/database"
+import React from 'react';
 import styles from './page.module.css'
 import Image from "next/image"
 import { Suspense } from "react";
+import ReviewForm from "./ReviewForm";
+import useSWR from 'swr';
+import Spinner from '../../Spinner/Spinner';
 
-export default async function Game({ params: { gameId } }) {
-  let { data, error } = await supabase
-  .from('games')
-  .select('*')
-  .eq('id', gameId)
+const fetcher = (...args) => fetch(...args).then((res) => res.json())
+export default function Game({ params: { gameId } }, reviewForm, setReviewForm) {
+  const { data, error } = useSWR(`/api/games/${gameId}`, fetcher)
+  if (error) return <div>Something went wrong</div>
+  if (!data) return <Spinner />
+  
+  let game = data.game;
 
-  let game = data[0];
+  function handleTextbox(e) {
+    e.preventDefault();
+    return (
+      <ReviewForm />
+    )
+  }
   return (
     <Suspense>
       <div className={styles.wrapper}>
@@ -21,6 +33,7 @@ export default async function Game({ params: { gameId } }) {
         </div>
         <Image src={game.background_image} alt={game.name} height={300} width={400} />
         <p className={styles.headerItem}>{`${game.reviews_text_count} Reviews`}</p>
+        <button onClick={() => handleTextbox}>Leave review</button>
       </div>
     </Suspense>
   )
