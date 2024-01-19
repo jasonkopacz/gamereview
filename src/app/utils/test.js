@@ -20,12 +20,14 @@ const fetchData = async () => {
     
     // Check if there are more pages
     // if (data.number_of_total_results > page * limit) {
-    // if (page === 1) {
-    //   createAndWriteToCsv(data.results)
-    // }
-    if (page < 3) {
+    if (page === 1) {
+      page++
+      createAndWriteToCsv(data.results)
+      fetchData();
+    }
+    else if (page < 3) {
       page++;
-      createAndWriteToCsv(data.results);
+      appendToCsv(data.results);
       fetchData(); // Fetch the next page
     } else {
       return
@@ -35,6 +37,21 @@ const fetchData = async () => {
     console.error('Error fetching data:', error);
   }
 };
+
+const appendToCsv = (data) => {
+  const existingCsv = fs.readFileSync('giant_bomb_games_list.csv', 'utf8'); // Replace 'existing.csv' with your file name
+
+    // Append the new data to the existing CSV content
+    const updatedCsv = existingCsv + jsonDataToCsv(data);
+
+    // Write the updated CSV content back to the file
+    fs.writeFileSync('giant_bomb_games_list.csv', updatedCsv);
+}
+
+function jsonDataToCsv(jsonData) {
+  const rows = jsonData.map(obj => Object.values(obj).join(','));
+  return rows.join('\n');
+}
 
 const createAndWriteToCsv = (data) => {
   // Define the CSV file name
@@ -48,49 +65,49 @@ const createAndWriteToCsv = (data) => {
     'api_detail_url,deck,guid,id,name\n'
   );
 
-  data.forEach(item => {
-    fs.appendFile(csvFileName, item, function (err) {
-      if (err) throw err;
-  })})
+  // data.forEach(item => {
+  //   fs.appendFile(csvFileName, item, function (err) {
+  //     if (err) throw err;
+  // })})
   // fs.appendFile(csvFileName, data, function (err) {
   //   if (err) throw err;
   //   console.log('Saved!');
   // })
 
   // Iterate through the data and write each record to the CSV
-  // data.forEach((item) => {
-  //   // const aliases = item.aliases;
-  //   const api_detail_url = item.api_detail_url;
-  //   // const date_added = item.date_added;
-  //   // const date_last_updated = item.date_last_updated;
-  //   const deck = item.deck;
-  //   // const description = item.description;
-  //   // const expected_release_day = item.expected_release_day;
-  //   // const expected_release_month = item.expected_release_month;
-  //   // const expected_release_quarter = item.expected_release_quarter;
-  //   // const expected_release_year = item.expected_release_year;
-  //   const guid = item.guid;
-  //   const id = item.id;
-  //   // const image = item.image;
-  //   // const image_tags = item.image_tags;
-  //   const name = item.name;
-  //   // const number_of_user_reviews = item.number_of_user_reviews;
-  //   // const original_game_rating = item.original_game_rating;
-  //   // const original_release_date = item.original_release_date;
-  //   // const platforms = item.platforms;
-  //   // const site_detail_url = item.site_detail_url;
+  data.forEach((item) => {
+    // const aliases = item.aliases;
+    const api_detail_url = item.api_detail_url;
+    // const date_added = item.date_added;
+    // const date_last_updated = item.date_last_updated;
+    const deck = item.deck;
+    // const description = item.description;
+    // const expected_release_day = item.expected_release_day;
+    // const expected_release_month = item.expected_release_month;
+    // const expected_release_quarter = item.expected_release_quarter;
+    // const expected_release_year = item.expected_release_year;
+    const guid = item.guid;
+    const id = item.id;
+    // const image = item.image;
+    // const image_tags = item.image_tags;
+    const name = item.name;
+    // const number_of_user_reviews = item.number_of_user_reviews;
+    // const original_game_rating = item.original_game_rating;
+    // const original_release_date = item.original_release_date;
+    // const platforms = item.platforms;
+    // const site_detail_url = item.site_detail_url;
 
-  //   // Write the record to the CSV file
-  //   writeStream.write(
-  //     `${api_detail_url},${deck},${guid},${id},${name}\n`
-  //   )
-  //   // writeStream.write(
-  //   //   `${aliases},${api_detail_url},${date_added},${date_last_updated},${deck},${description},`
-  //   //   + `${expected_release_day},${expected_release_month},${expected_release_quarter},${expected_release_year},`
-  //   //   + `${guid},${id},${image},${image_tags},${name},${number_of_user_reviews},${original_game_rating},`
-  //   //   + `${original_release_date},${platforms},${site_detail_url}\n`
-  //   // );
-  // });
+    // Write the record to the CSV file
+    writeStream.write(
+      `${api_detail_url},${deck},${guid},${id},${name}\n`
+    )
+    // writeStream.write(
+    //   `${aliases},${api_detail_url},${date_added},${date_last_updated},${deck},${description},`
+    //   + `${expected_release_day},${expected_release_month},${expected_release_quarter},${expected_release_year},`
+    //   + `${guid},${id},${image},${image_tags},${name},${number_of_user_reviews},${original_game_rating},`
+    //   + `${original_release_date},${platforms},${site_detail_url}\n`
+    // );
+  });
   writeStream.end();
 
   console.log(`Data written to ${csvFileName}`);
