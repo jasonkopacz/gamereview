@@ -4,38 +4,44 @@ const fetch = require('node-fetch'); // Import the fetch module
 const apiKey = 'd769c6d72b58557bdef8f2c3893df62f330b04d6';
 const baseUrl = 'https://www.giantbomb.com/api';
 const endpoint = '/games'; // Replace with your specific endpoint
-const limit = 100; // Set the number of results per page
-let page = 1; // Start with page 1
+const supabase = '../database';
+let limit = 100;
+let offset = 0;
+let page = 1; 
 const format = 'json';
 let field_list = 'api_detail_url,deck,guid,id,name';
 let results = [];
 const fetchData = async () => {
   try {
     console.log(page)
-    const response = await fetch(`${baseUrl}${endpoint}?api_key=${apiKey}&limit=${limit}&page=${page}&format=${format}&field_list=${field_list}`);
+    const response = await fetch(`${baseUrl}${endpoint}?api_key=${apiKey}&offset=${offset}&page=${page}&format=${format}&field_list=${field_list}`);
     let data = await response.json();
     results.push(...data.results);
+    // console.log(data.results)
+    // return
     // data.results.map(item => results.push(deepFlattenToObject(item)))
     // Process and use the data from this page as needed
     
     // Check if there are more pages
-    // if (data.number_of_total_results > page * limit) {
     if (page === 1) {
-      page++
-      createAndWriteToCsv(data.results)
+      page++;
+      offset+=100;
+      // createAndWriteToCsv(data.results)
       fetchData();
     }
-    else if (page < 3) {
+    else if (data.number_of_total_results > page * limit) {
       page++;
-      appendToCsv(data.results);
+      offset+=100;
+      // appendToCsv(data.results);
       fetchData(); // Fetch the next page
-    } else {
-      return
-      createAndWriteToCsv(data.results);
     }
   } catch (error) {
     console.error('Error fetching data:', error);
   }
+  const { data, error } = await supabase
+  .from('games')
+  .upsert({ ...results })
+  .select()
 };
 
 const appendToCsv = (data) => {
@@ -49,7 +55,30 @@ const appendToCsv = (data) => {
 }
 
 function jsonDataToCsv(jsonData) {
-  const rows = jsonData.map(obj => Object.values(obj).join(','));
+  const rows = jsonData.map(obj => {
+     // const aliases = obj.aliases;
+     const api_detail_url = obj.api_detail_url;
+     // const date_added = obj.date_added;
+     // const date_last_updated = obj.date_last_updated;
+     const deck = JSON.stringify(obj.deck);
+     // const description = obj.description;
+     // const expected_release_day = obj.expected_release_day;
+     // const expected_release_month = obj.expected_release_month;
+     // const expected_release_quarter = obj.expected_release_quarter;
+     // const expected_release_year = obj.expected_release_year;
+     const guid = obj.guid;
+     const id = obj.id;
+     // const image = obj.image;
+     // const image_tags = obj.image_tags;
+     const name = obj.name;
+     // const number_of_user_reviews = obj.number_of_user_reviews;
+     // const original_game_rating = obj.original_game_rating;
+     // const original_release_date = obj.original_release_date;
+     // const platforms = obj.platforms;
+     // const site_detail_url = obj.site_detail_url;
+    const row = `${api_detail_url},${deck},${guid},${id},${name}\n`
+    return row
+  });
   return rows.join('\n');
 }
 
@@ -75,12 +104,13 @@ const createAndWriteToCsv = (data) => {
   // })
 
   // Iterate through the data and write each record to the CSV
+
   data.forEach((item) => {
     // const aliases = item.aliases;
     const api_detail_url = item.api_detail_url;
     // const date_added = item.date_added;
     // const date_last_updated = item.date_last_updated;
-    const deck = item.deck;
+    const deck = JSON.stringify(item.deck);
     // const description = item.description;
     // const expected_release_day = item.expected_release_day;
     // const expected_release_month = item.expected_release_month;

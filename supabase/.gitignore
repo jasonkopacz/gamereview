@@ -2,3 +2,6 @@
 .branches
 .temp
 .env
+src/app/utils/giant_bomb_games_list.csv
+src/public/giant_bomb_games_list.csv
+```
