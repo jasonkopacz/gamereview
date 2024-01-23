@@ -4,7 +4,7 @@ import { supabase } from "@/app/database";
 
 export default async function Index() {
     let { data: games, error } = await supabase
-    .from('games')
+    .from('games_old')
     .select('*');
     return (
 			<>
