@@ -3,9 +3,12 @@ import styles from './page.module.css';
 import { supabase } from "@/app/database";
 
 export default async function Index() {
-    let { data: games, error } = await supabase
-    .from('games_old')
-    .select('*');
+    const { error, data: games} = await supabase
+    .from('games')
+    .select('*')
+		.limit(10)
+
+		// console.log(response)
     return (
 			<>
 				<h1 className={styles.title}>Popular Titles</h1>
