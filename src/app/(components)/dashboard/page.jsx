@@ -4,11 +4,9 @@ import { supabase } from "@/app/database";
 
 export default async function Index() {
     const { error, data: games} = await supabase
-    .from('games')
+    .from('games_old')
     .select('*')
-		.limit(10)
 
-		// console.log(response)
     return (
 			<>
 				<h1 className={styles.title}>Popular Titles</h1>
