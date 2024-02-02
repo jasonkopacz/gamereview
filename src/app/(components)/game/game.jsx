@@ -32,8 +32,8 @@ export function Game( { game }) {
 							<Image
 									src={game.background_image}
 									alt={game.name}
-									width={250}
-									height={200} 
+									width={300}
+									height={300} 
 									loading='lazy'
 									className={styles.gameImage}
 									/>
@@ -46,9 +46,11 @@ export function Game( { game }) {
 								transition={true} 
 								emptyColor='white'
 								readonly={true}
+								className={styles.rating}
+								fillClassName={styles.fill}
+								showTooltip={true}
 								>
 							</Rating>
-							<motion.p animate={{rotate: 360}}>{rating}</motion.p>
 						</Suspense>
 					</div>
         </Suspense>

@@ -1,5 +1,6 @@
 import React from 'react';
 import {
+  Teko,
   Work_Sans,
   Spline_Sans_Mono,
 } from 'next/font/google';
@@ -20,7 +21,7 @@ import RespectMotionPreferences from './(components)/RespectMotionPreferences/Re
 import './styles.css';
 import Cookies from 'js-cookie';
 
-const mainFont = Work_Sans({
+const mainFont = Teko({
   subsets: ['latin'],
   display: 'fallback',
   weight: 'variable',

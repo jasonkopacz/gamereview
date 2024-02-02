@@ -20,3 +20,11 @@
   flex-direction: column;
   border-radius: 10px;
 }
+
+.rating {
+
+}
+
+.fill {
+  display: none;
+}
