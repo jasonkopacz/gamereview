@@ -6,7 +6,6 @@ import Spinner from '../Spinner/Spinner';
 import { Suspense } from 'react';
 import Link from 'next/link';
 import { Rating } from 'react-simple-star-rating';
-import { motion } from 'framer-motion';
 const apiKey = 'd769c6d72b58557bdef8f2c3893df62f330b04d6';
 const baseUrl = 'https://www.giantbomb.com/api';
 
@@ -33,7 +32,12 @@ export function Game( { game }) {
 									src={game.background_image}
 									alt={game.name}
 									width={300}
-									height={300} 
+									height={300}
+									sizes="100vw"
+									// Make the image display full width
+									style={{
+										width: '100%',
+									}}
 									loading='lazy'
 									className={styles.gameImage}
 									/>
@@ -46,7 +50,6 @@ export function Game( { game }) {
 								transition={true} 
 								emptyColor='white'
 								readonly={true}
-								className={styles.rating}
 								fillClassName={styles.fill}
 								showTooltip={true}
 								>

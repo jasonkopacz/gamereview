@@ -18,3 +18,9 @@
   margin: 0;
   padding: 0;
 }
+
+.gameImage {
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+}

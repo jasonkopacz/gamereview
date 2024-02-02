@@ -7,7 +7,7 @@ const baseUrl = 'https://www.giantbomb.com/api';
 const endpoint = '/game';
 const format = 'json';
 const number = 1;
-let field_list = 'rating,description,developer,genres,image,number_of_reviews,release_date,platforms,publisher,themes';
+let field_list = 'rating,description,developers,genres,number_of_reviews,original_release_date';
 let results = [];
 const fetchData = async () => {
   try {
@@ -85,7 +85,7 @@ const createAndWriteToCsv = (data) => {
 
   // Write the CSV header
   writeStream.write(
-    'api_detail_url,deck,guid,id,name\n'
+    'rating, description, developers, genres, number_of_reviews, release_date\n'
   );
 
   // data.forEach(item => {
