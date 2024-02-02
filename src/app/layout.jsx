@@ -16,7 +16,6 @@ import {
 import Header from './(components)/header/Header';
 import Footer from './(components)/footer/Footer';
 import RespectMotionPreferences from './(components)/RespectMotionPreferences/RespectMotionPreferences';
-import { supabase } from './database';
 
 import './styles.css';
 import Cookies from 'js-cookie';

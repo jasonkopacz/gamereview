@@ -19,9 +19,9 @@ async function getDetails(id) {
 }
 
 export function Game( { game }) {
-	const [rating, setRating] = React.useState(game.rating)
+	const [rating, setRating] = React.useState(game.rating);
 
-  const handleRating = (rate) => {
+	const handleRating = (rate) => {
 		setRating(rate);
 }
     return (
@@ -39,9 +39,16 @@ export function Game( { game }) {
 									/>
 						</Link>
 						<Suspense fallback={<Spinner />}>
-							<motion.div whileHover={{ scale: 1.2 }}>
-								<Rating onClick={handleRating} initialValue={rating} />
-							</motion.div>
+							<Rating 
+								onClick={handleRating} 
+								initialValue={rating} 
+								allowFraction={true}
+								transition={true} 
+								emptyColor='white'
+								readonly={true}
+								>
+							</Rating>
+							<motion.p animate={{rotate: 360}}>{rating}</motion.p>
 						</Suspense>
 					</div>
         </Suspense>
