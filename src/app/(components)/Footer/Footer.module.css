@@ -8,10 +8,12 @@
   .content {
     position: relative;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: space-between;
     align-items: center;
     gap: 64px;
     width: 100%;
+    height: auto;
     max-width: var(--content-width);
     padding: 0 var(--viewport-padding);
     padding-bottom: 48px;
@@ -54,7 +56,6 @@
   
   @media (min-width: 35rem) {
     .wrapper {
-      padding-bottom: 64px;
       text-align: revert;
     }
   

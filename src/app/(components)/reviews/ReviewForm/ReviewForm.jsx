@@ -5,8 +5,10 @@ import styles from './ReviewForm.module.css'
 import { Rating } from "react-simple-star-rating";
 import VisuallyHidden from "../../VisuallyHidden/VisuallyHidden"
 import { motion } from 'framer-motion';
-export default function ReviewForm({ game, setIsOpen}) {
+
+export default function ReviewForm({ game, toggleIsModalOpen}) {
   const [rating, setRating] = React.useState('0');
+
   const {
     handleSubmit,
     watch,
@@ -30,7 +32,7 @@ export default function ReviewForm({ game, setIsOpen}) {
         Review
       </label>
       <VisuallyHidden>Review</VisuallyHidden>
-      <textarea {...register("reviewText", { required: true })} className={styles.review}/>
+      <textarea rows='5' {...register("reviewText", { required: true })} className={styles.review}/>
       {errors.reviewText && <span className={styles.error}>This field is required</span>}
       <label htmlFor="rating" className={styles.label}>
         Rating
@@ -39,19 +41,20 @@ export default function ReviewForm({ game, setIsOpen}) {
         name="rating"
         control={control}
         rules={{ required: true }}
-        render={({ field }) => <Rating {...field}
-        onChange={field.onChange}
-        onBlur={field.onBlur}
-        value={field.value} 
-        ref={null}
-        onClick={(rating) => setRating(rating)} 
-        allowFraction={true}
-        transition={true}
-        emptyColor='white'
-        fillClassName={styles.fill}
-        showTooltip={true}
-        />
-      }
+        render={({ field }) => 
+          <Rating {...field}
+            onChange={field.onChange}
+            onBlur={field.onBlur}
+            value={field.value} 
+            ref={null}
+            onClick={(rating) => setRating(rating)} 
+            allowFraction={true}
+            transition={true}
+            emptyColor='black'
+            fillClassName={styles.fill}
+            showTooltip={true}
+          />
+        }
       />
       {errors.rating && <span className={styles.error}>This field is required</span>}
       <input type="submit" className={styles.submit}/>

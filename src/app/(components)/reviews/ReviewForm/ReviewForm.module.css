@@ -3,6 +3,8 @@
   flex-direction: column;
   align-items: center;
   margin: auto;
+  background-color: gray;
+  border-radius: 10px;
 }
 
 .label {
@@ -14,7 +16,7 @@
   flex-direction: column;
   margin: 10px;
   height: auto;
-  width: 33%;
+  width: 80%;
 }
 
 .submit {
@@ -23,10 +25,18 @@
   align-items: center;
   margin: 10px;
   height: auto;
-  width: fit-content;
+  width: 20%;
 }
 
 .error {
   color: red;
   font-size: large;
+}
+
+.closeButton {
+  flex-shrink: 0;
+  border: none;
+  background: transparent;
+  padding: 16px;
+  cursor: pointer;
 }
