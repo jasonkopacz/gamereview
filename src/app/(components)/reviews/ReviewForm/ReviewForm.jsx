@@ -52,6 +52,7 @@ export default function ReviewForm({ game, toggleIsModalOpen}) {
             transition={true}
             emptyColor='black'
             fillClassName={styles.fill}
+            className={styles.rating}
             showTooltip={true}
           />
         }

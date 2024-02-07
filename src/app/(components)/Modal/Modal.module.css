@@ -13,7 +13,7 @@
 }
 .dialog {
   position: relative;
-  background: white;
+  background: var(--color-gray-300);
   border-radius: 8px;
   padding: 32px;
 }
@@ -23,24 +23,18 @@
   right: 0;
   padding: 16px;
   color: white;
-  transform: translateY(-100%);
   cursor: pointer;
   background: transparent;
   border: none
 }
 @media (max-width: 450px) {
   .wrapper {
-    display: block;
+    /* display: block; */
     padding: 0;
   }
 
   .dialog {
-    height: 100%;
-    width: 100%;
-  }
-
-  .closeBtn {
-    top: 85px;
-    right: 23px;
+    height: auto;
+    width: 80vw;
   }
 }

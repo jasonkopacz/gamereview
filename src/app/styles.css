@@ -103,6 +103,7 @@ body::before {
 body > main {
   flex: 1;
   position: relative;
+  padding-top: 10px;
 }
 
 em {
