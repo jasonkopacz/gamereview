@@ -5,11 +5,13 @@ export async function GET(req, {params: {gameId}}) {
   if (req.method === 'GET') {
     const { data, error } = await supabase
     .from('games_old')
-    .select('*, reviews (review_text, rating)')
+    .select(`
+      *,
+      reviews:reviews(game_id)
+    `)
     .eq('id', gameId)
-    .single()
+    .single();
     
-    console.log(data)
     return NextResponse.json({game: data}, { status: 200 })
   }
   return NextResponse.json({error: error}, {status: 404 })

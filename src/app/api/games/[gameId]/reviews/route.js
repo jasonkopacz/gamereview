@@ -3,15 +3,18 @@ import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
 
 export async function GET(req, {params: {gameId}}) {
+  const supabase = createServerComponentClient({ cookies });
   if (req.method === 'GET') {
-    const { data, error } = await supabase
-    .from('reviews')
-    .select('*')
-    .eq('game_id', gameId)
-    
-    return NextResponse.json({game: data}, { status: 200 })
+    try {
+      const { data, error } = await supabase
+      .from('reviews')
+      .select('*, profile:profile_id(username)')
+      .eq('game_id', gameId)
+      return NextResponse.json({reviews: data}, { status: 200 })
+    } catch (error) {
+       return NextResponse.json({error: error}, {status: 404 })
+    }
   }
-  return NextResponse.json({error: error}, {status: 404 })
 }
 
 export async function POST(req) {

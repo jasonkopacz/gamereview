@@ -6,7 +6,6 @@ import { supabase } from '@/app/database'
 export async function GET(request) {
     const cookieStore = cookies()
     // const supabase = createRouteHandlerClient({ cookies: () => cookieStore })
-    console.log('here')
     const apiKey = 'd769c6d72b58557bdef8f2c3893df62f330b04d6';
     const baseUrl = 'https://www.giantbomb.com/api';
     const endpoint = '/games'; // Replace with your specific endpoint
@@ -24,18 +23,14 @@ export async function GET(request) {
         let res = await response.json();
         results.push(...res.results);
         
-        console.log('nigga we made it')
-        console.log(results)
       await supabase
         .from('games')
         .insert({ ...results })
         // .select()
 
         const data = await supabase.from('games').select('*')
-    console.log(await data)
     return
 
-      // console.log(data.results)
       // return
       // data.results.map(item => results.push(deepFlattenToObject(item)))
       // Process and use the data from this page as needed

@@ -1,0 +1,15 @@
+.wrapper {
+  padding: 0px 20px;
+}
+
+.reviewContainer {
+  display: flex;
+  flex-direction: column;
+  padding-inline-start: 0px;
+  border-radius: 20px;
+  background-color: var(--color-decorative-300);
+}
+
+.reviewsHeader {
+  margin-top: 1em;
+}

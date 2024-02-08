@@ -13,7 +13,7 @@ async function getDetails(id) {
 	const url = `${baseUrl}/game/${id}/?api_key=${apiKey}&format=json`;
 	const response = await fetch(url);
 	const data = await response.json();
-	console.log(data);
+
 	return data;
 }
 

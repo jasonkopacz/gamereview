@@ -14,7 +14,7 @@ export default async function Account() {
 
   // const { data: { games } } = await supabase.from('profiles').select('games').eq('id', 'b400342e-4f57-4823-9b05-45ecf94b539a')
   // const myGames = user.games
-  // console.log(games)
+
   return (
     <>
       <Link href="/profile/edit" > Edit Profile </ Link >

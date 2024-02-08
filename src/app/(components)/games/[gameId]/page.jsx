@@ -8,6 +8,7 @@ import useSWR from 'swr';
 import Spinner from '../../Spinner/Spinner';
 import Modal from '../../Modal/Modal';
 import useToggle from '@/app/hooks/useToggle';
+import Reviews from './reviews';
 
 const fetcher = (...args) => fetch(...args).then((res) => res.json())
 
@@ -47,8 +48,11 @@ export default function Game({ params: { gameId } }) {
             <p className={styles.headerItem}>{`Release Date: ${game.released}`}</p>
             <p className={styles.headerItem}>{`Metacritic Score: ${game.metacritic}`}</p>
             <p className={styles.headerItem}>{`ESRB Rating: ${capitalizeFirstLetter(game.esrb_rating)}`}</p>
+            <p className={styles.headerItem}>{`${game.reviews_text_count} Reviews`}</p>
+            <button className={styles.action} onClick={toggleIsModalOpen}>
+              Leave review
+            </button>
           </div>
-          <p className={styles.headerItem}>{`${game.reviews_text_count} Reviews`}</p>
           {isModalOpen && (
             <Modal
               title="Leave Review"
@@ -57,9 +61,7 @@ export default function Game({ params: { gameId } }) {
               <ReviewForm game={game}/>
             </Modal>
           )}
-          <button onClick={toggleIsModalOpen}>
-            Leave review
-          </button>
+          <Reviews gameId={gameId}/>
         </div>
       </Suspense>
     </>

@@ -5,7 +5,7 @@ export async function postReview(data) {
   'use server'
   const supabase = createServerComponentClient({ cookies });
   const { data: { user }} = await supabase.auth.getUser();
-  console.log(user);
+
   return;
   let review = { gameId: game.id, reviewText: data.reviewText, rating: data.rating}
   try {
