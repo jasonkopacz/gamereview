@@ -58,7 +58,7 @@ export default function Game({ params: { gameId } }) {
               title="Leave Review"
               handleDismiss={toggleIsModalOpen}
             >
-              <ReviewForm game={game}/>
+              <ReviewForm game={game} handleDismiss={toggleIsModalOpen}/>
             </Modal>
           )}
           <Reviews gameId={gameId}/>

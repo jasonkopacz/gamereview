@@ -12,7 +12,6 @@ export default function Reviews({ gameId  }) {
     if (!data) return <Spinner />
     
     let reviews = data.reviews;
-    console.log(reviews)
 
     return (
       <div className={styles.wrapper}>
