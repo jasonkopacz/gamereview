@@ -1,5 +1,4 @@
 'use client'
-// import { supabase } from "@/app/database"
 import React from 'react';
 import styles from './page.module.css'
 import Image from "next/image"
@@ -22,11 +21,6 @@ export default function Game({ params: { gameId } }) {
   
   let game = data.game;
 
-  function handleTextbox(e) {
-    e.preventDefault();
-    setIsOpen(true);
-  }
-
   function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
@@ -35,12 +29,6 @@ export default function Game({ params: { gameId } }) {
     <>
       <Suspense>
         <div className={styles.wrapper}>
-          <div className={styles.headerWrapper}>
-            <h2 className={styles.headerItem}>{`${game.name} - ${game.rating} / 5`}</h2>
-            <p className={styles.headerItem}>{`Release Date: ${game.released}`}</p>
-            <p className={styles.headerItem}>{`Metacritic Score: ${game.metacritic}`}</p>
-            <p className={styles.headerItem}>{`ESRB Rating: ${capitalizeFirstLetter(game.esrb_rating)}`}</p>
-          </div>
           <Image 
             src={game.background_image} 
             alt={game.name} 
@@ -54,13 +42,19 @@ export default function Game({ params: { gameId } }) {
               height: 'auto'
             }}
             />
+          <div className={styles.headerWrapper}>
+            <h2 className={styles.headerItem}>{`${game.name} - ${game.rating} / 5`}</h2>
+            <p className={styles.headerItem}>{`Release Date: ${game.released}`}</p>
+            <p className={styles.headerItem}>{`Metacritic Score: ${game.metacritic}`}</p>
+            <p className={styles.headerItem}>{`ESRB Rating: ${capitalizeFirstLetter(game.esrb_rating)}`}</p>
+          </div>
           <p className={styles.headerItem}>{`${game.reviews_text_count} Reviews`}</p>
           {isModalOpen && (
             <Modal
               title="Leave Review"
               handleDismiss={toggleIsModalOpen}
             >
-              <ReviewForm game={game} toggleIsModalOpen={toggleIsModalOpen}/>
+              <ReviewForm game={game}/>
             </Modal>
           )}
           <button onClick={toggleIsModalOpen}>

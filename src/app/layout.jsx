@@ -1,7 +1,6 @@
 import React from 'react';
 import {
   Teko,
-  Work_Sans,
   Spline_Sans_Mono,
 } from 'next/font/google';
 import clsx from 'clsx';

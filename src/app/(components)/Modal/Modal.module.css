@@ -14,7 +14,7 @@
 .dialog {
   position: relative;
   background: var(--color-gray-300);
-  border-radius: 8px;
+  border-radius: 40px;
   padding: 32px;
 }
 .closeBtn {
@@ -29,7 +29,6 @@
 }
 @media (max-width: 450px) {
   .wrapper {
-    /* display: block; */
     padding: 0;
   }
 

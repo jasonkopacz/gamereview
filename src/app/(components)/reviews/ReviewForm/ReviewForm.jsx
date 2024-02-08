@@ -5,10 +5,11 @@ import styles from './ReviewForm.module.css'
 import { Rating } from "react-simple-star-rating";
 import VisuallyHidden from "../../VisuallyHidden/VisuallyHidden"
 import { motion } from 'framer-motion';
+import Spinner from "../../Spinner/Spinner";
+import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 
-export default function ReviewForm({ game, toggleIsModalOpen}) {
-  const [rating, setRating] = React.useState('0');
-
+export default function ReviewForm({ game }) {
+  const [rating, setRating] = React.useState(game.rating);  
   const {
     handleSubmit,
     watch,
@@ -16,14 +17,40 @@ export default function ReviewForm({ game, toggleIsModalOpen}) {
     control,
     formState: { errors }
   } = useForm()
+  const supabase = createClientComponentClient();
 
-  const onSubmit = (data) => console.log(data)
+  async function postReview(data) {
+    const { data: { user }} = await supabase.auth.getUser();
+    const posted = new Date();
+    const review = { 
+      userId: user.id, 
+      gameId: game.id, 
+      reviewText: data.reviewText, 
+      rating: data.rating, 
+      posted: posted
+    };
 
-  console.log(watch('reviewText'))
-  console.log(watch('rating'))
-
+    try {
+      const response = await fetch(`/api/games/${game.id}/reviews`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(review),
+      });
+      
+      const result = await response.json();
+      console.log("Success:", result);
+    } catch (error) {
+      console.error("Error:", error);
+    };
+  };
+  
+  
   return (
-    <motion.form onSubmit={handleSubmit(onSubmit)} className={styles.reviewForm}
+    <motion.form 
+      action={postReview}
+      onSubmit={handleSubmit(postReview)} className={styles.reviewForm}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
@@ -32,7 +59,7 @@ export default function ReviewForm({ game, toggleIsModalOpen}) {
         Review
       </label>
       <VisuallyHidden>Review</VisuallyHidden>
-      <textarea rows='5' {...register("reviewText", { required: true })} className={styles.review}/>
+      <textarea rows='3' {...register("reviewText", { required: true })} className={styles.review}/>
       {errors.reviewText && <span className={styles.error}>This field is required</span>}
       <label htmlFor="rating" className={styles.label}>
         Rating
@@ -41,13 +68,14 @@ export default function ReviewForm({ game, toggleIsModalOpen}) {
         name="rating"
         control={control}
         rules={{ required: true }}
-        render={({ field }) => 
+        render={({ field }) => (
           <Rating {...field}
-            onChange={field.onChange}
-            onBlur={field.onBlur}
-            value={field.value} 
+            value={field.value}
             ref={null}
-            onClick={(rating) => setRating(rating)} 
+            onClick={(value) => {
+              field.onChange(value)
+              setRating(value)
+            }} 
             allowFraction={true}
             transition={true}
             emptyColor='black'
@@ -55,7 +83,7 @@ export default function ReviewForm({ game, toggleIsModalOpen}) {
             className={styles.rating}
             showTooltip={true}
           />
-        }
+      )}
       />
       {errors.rating && <span className={styles.error}>This field is required</span>}
       <input type="submit" className={styles.submit}/>
