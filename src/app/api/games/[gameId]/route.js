@@ -7,7 +7,7 @@ export async function GET(req, {params: {gameId}}) {
     .from('games_old')
     .select(`
       *,
-      reviews:reviews(game_id)
+      reviews:reviews(*)
     `)
     .eq('id', gameId)
     .single();
@@ -17,12 +17,12 @@ export async function GET(req, {params: {gameId}}) {
   return NextResponse.json({error: error}, {status: 404 })
 }
 
-export async function POST(req, {params: {profileId, gameId, review: {reviewText, rating, posted, updated}}}) {
+export async function POST(req, {params: {profileId, username, gameId, review: {reviewText, rating, posted, updated}}}) {
   if (req.method === 'POST') {
     const { data, error } = await supabase
     .from('reviews')
     .insert([
-      { profile_id: profileId, game_id: gameId, review_text: reviewText, rating: rating, posted: posted, updated: updated }
+      { profile_id: profileId, username: username, game_id: gameId, review_text: reviewText, rating: rating, posted: posted, updated: updated }
     ])
     return NextResponse.json({review: data}, { status: 200 })
   }

@@ -27,7 +27,8 @@ export async function POST(req) {
       
       await supabase.from('reviews').insert([
         { 
-          profile_id: review.userId, 
+          profile_id: review.userId,
+          username: review.username,
           game_id: review.gameId, 
           review_text: review.reviewText, 
           rating: review.rating, 

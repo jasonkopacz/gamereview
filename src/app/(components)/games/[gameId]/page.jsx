@@ -8,50 +8,40 @@ import useSWR from 'swr';
 import Spinner from '../../Spinner/Spinner';
 import Modal from '../../Modal/Modal';
 import useToggle from '@/app/hooks/useToggle';
-import Reviews from './reviews';
+import Review from '../../reviews/[reviewId]/page';
+import { capitalizeFirstLetter } from '@/app/helpers/capitalize';
 
 const fetcher = (...args) => fetch(...args).then((res) => res.json())
 
 export default function Game({ params: { gameId } }) {
+  const [reviews, setReviews] = React.useState([]);
   const [isModalOpen, toggleIsModalOpen] = useToggle(false);
 
 
-  const { data, error } = useSWR(`/api/games/${gameId}`, fetcher)
-  if (error) return <div>Something went wrong</div>
-  if (!data) return <Spinner />
-  
-  let game = data.game;
+  const { data, error, isLoading } = useSWR(`/api/games/${gameId}`, fetcher)
+  React.useEffect(() => {
+    if (data && data.game && data.game.reviews) {
+      setReviews(data.game.reviews);
+    }
+  }, [data]);
 
-  function capitalizeFirstLetter(string) {
-    return string.charAt(0).toUpperCase() + string.slice(1);
-  }
+  if (error) return <div>Something went wrong</div>
+  if (isLoading) return <Spinner />
+  let game = data.game;
 
   return (
     <>
       <Suspense>
+          <header className={styles.block}>
+            <div style={{'backgroundImage': `url(${game.background_image})`}} className={styles.backgroundWrapper} />
+            <h2 className={styles.title}>{`${game.name} - ${game.rating} / 5`}</h2>
+          </header>
         <div className={styles.wrapper}>
-          <Image 
-            src={game.background_image} 
-            alt={game.name} 
-            priority={true}
-            height={300} 
-            width={400}
-            sizes="100vw"
-            className={styles.gameImage}
-            style={{
-              width: '75%',
-              height: 'auto'
-            }}
-            />
           <div className={styles.headerWrapper}>
-            <h2 className={styles.headerItem}>{`${game.name} - ${game.rating} / 5`}</h2>
             <p className={styles.headerItem}>{`Release Date: ${game.released}`}</p>
             <p className={styles.headerItem}>{`Metacritic Score: ${game.metacritic}`}</p>
             <p className={styles.headerItem}>{`ESRB Rating: ${capitalizeFirstLetter(game.esrb_rating)}`}</p>
             <p className={styles.headerItem}>{`${game.reviews_text_count} Reviews`}</p>
-            <button className={styles.action} onClick={toggleIsModalOpen}>
-              Leave review
-            </button>
           </div>
           {isModalOpen && (
             <Modal
@@ -61,7 +51,19 @@ export default function Game({ params: { gameId } }) {
               <ReviewForm game={game} handleDismiss={toggleIsModalOpen}/>
             </Modal>
           )}
-          <Reviews gameId={gameId}/>
+          {reviews.length === 0 ? <p>No reviews yet</p> :
+            <div className={styles.reviewsWrapper}>
+              <h2 className={styles.reviewsHeader}>Reviews</h2>
+              <button className={styles.action} onClick={toggleIsModalOpen}>
+                Add review
+              </button>
+              <ul className={styles.reviewContainer}>
+                {reviews.map((review) => (
+                  <Review key={review.id} review={review} />
+                ))}
+              </ul>
+            </div>
+          }
         </div>
       </Suspense>
     </>

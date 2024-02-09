@@ -2,7 +2,7 @@
   width: auto;
   border-radius: 40px;
   background-color: var(--color-decorative-300);
-  margin-left: 20px;
+  padding-left: 30px;
 }
 
 .review {

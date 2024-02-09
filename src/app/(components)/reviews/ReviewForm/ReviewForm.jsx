@@ -19,11 +19,12 @@ export default function ReviewForm({ game, handleDismiss }) {
   const supabase = createClientComponentClient();
 
   async function postReview(data) {
-    const { data: { user }} = await supabase.auth.getUser();
     if (!data) return <Spinner />;
     const posted = new Date();
+    console.log(user)
     const review = { 
-      userId: user.id, 
+      userId: user.id,
+      username: user.username,
       gameId: game.id, 
       reviewText: data.reviewText, 
       rating: data.rating, 
