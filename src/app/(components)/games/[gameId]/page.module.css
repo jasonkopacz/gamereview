@@ -1,5 +1,5 @@
 .backgroundWrapper {
-  position: fixed;
+  position: absolute;
   left: 0;
   right: 0;
   z-index: 1;
@@ -26,8 +26,7 @@
   justify-content: space-evenly;
   flex-direction: row;
   padding: 0px 20px;
-  margin: 0;
-  z-index: 1;
+  margin: 10px;
 }
 
 @media (max-width: 450px) {
@@ -38,14 +37,24 @@
 
 .title {
   text-align: center;
-  position: fixed;
+  position: absolute;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  margin-left: 20px;
+  margin-right: 20px;
+  font-size: xx-large;
+}
+
+/* .headerRating {
+  text-align: center;
+  position: absolute;
+  top: 70px;
   left: 0;
   right: 0;
   z-index: 9999;
-  margin-left: 20px;
-  margin-right: 20px;
-  size: big;
-}
+} */
+
 .headerItem {
   margin: 0;
   padding: 0;
@@ -79,6 +88,11 @@
 
 .reviewContainer {
   padding-inline-start: 0px !important;
+}
+
+.noReviews {
+  text-align:  center;
+  margin-top: 2em;
 }
 
 /* .background-image {

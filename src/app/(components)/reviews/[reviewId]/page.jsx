@@ -8,6 +8,7 @@ export default function Review({ review }) {
 
   console.log(review)
 
+
   return (
     <li className={styles.wrapper}>
       <h3 className={styles.head}>{review.username} on {formatDate(review.posted)}</h3>

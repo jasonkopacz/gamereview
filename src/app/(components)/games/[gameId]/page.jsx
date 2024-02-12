@@ -10,6 +10,7 @@ import Modal from '../../Modal/Modal';
 import useToggle from '@/app/hooks/useToggle';
 import Review from '../../reviews/[reviewId]/page';
 import { capitalizeFirstLetter } from '@/app/helpers/capitalize';
+import { Rating } from 'react-simple-star-rating';
 
 const fetcher = (...args) => fetch(...args).then((res) => res.json())
 
@@ -34,7 +35,7 @@ export default function Game({ params: { gameId } }) {
       <Suspense>
           <header className={styles.block}>
             <div style={{'backgroundImage': `url(${game.background_image})`}} className={styles.backgroundWrapper} />
-            <h2 className={styles.title}>{`${game.name} - ${game.rating} / 5`}</h2>
+            <h2 className={styles.title}>{`${game.name}`}</h2>
           </header>
         <div className={styles.wrapper}>
           <div className={styles.headerWrapper}>
@@ -43,23 +44,23 @@ export default function Game({ params: { gameId } }) {
             <p className={styles.headerItem}>{`ESRB Rating: ${capitalizeFirstLetter(game.esrb_rating)}`}</p>
             <p className={styles.headerItem}>{`${game.reviews_text_count} Reviews`}</p>
           </div>
+            <button className={styles.action} onClick={toggleIsModalOpen}>
+            Add review
+          </button>
           {isModalOpen && (
             <Modal
               title="Leave Review"
               handleDismiss={toggleIsModalOpen}
             >
-              <ReviewForm game={game} handleDismiss={toggleIsModalOpen}/>
+              <ReviewForm game={game} handleDismiss={toggleIsModalOpen} reviews={reviews} setReviews={setReviews}/>
             </Modal>
           )}
-          {reviews.length === 0 ? <p>No reviews yet</p> :
+          {reviews.length === 0 ? <p className={styles.noReviews}>No reviews yet</p> :
             <div className={styles.reviewsWrapper}>
               <h2 className={styles.reviewsHeader}>Reviews</h2>
-              <button className={styles.action} onClick={toggleIsModalOpen}>
-                Add review
-              </button>
-              <ul className={styles.reviewContainer}>
-                {reviews.map((review) => (
-                  <Review key={review.id} review={review} />
+              <ul className={styles.reviewContainer} >
+                {reviews.map((review, id) => (
+                  <Review key={id} review={review} />
                 ))}
               </ul>
             </div>

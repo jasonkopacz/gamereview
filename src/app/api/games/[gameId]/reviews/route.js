@@ -25,7 +25,7 @@ export async function POST(req) {
       const { data: { user }} = await supabase.auth.getUser();
       if (user.id !== review.userId) { return NextResponse.json({error: "Unauthorized"}, {status: 401 }) }
       
-      await supabase.from('reviews').insert([
+      const response = await supabase.from('reviews').insert([
         { 
           profile_id: review.userId,
           username: review.username,
@@ -35,6 +35,7 @@ export async function POST(req) {
           posted: review.posted 
         }
       ])
+      console.log(response)
       return NextResponse.json({review: review}, { status: 200 })
     } catch (error) {
       return NextResponse.json({error: error}, {status: 404 })

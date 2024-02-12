@@ -8,8 +8,9 @@ import { motion } from 'framer-motion';
 import Spinner from "../../Spinner/Spinner";
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 
-export default function ReviewForm({ game, handleDismiss }) {
-  const [rating, setRating] = React.useState(game.rating);  
+export default function ReviewForm({ game, handleDismiss, reviews, setReviews }) {
+  const [rating, setRating] = React.useState(game.rating);
+  const [isLoading, setIsLoading] = React.useState(false);
   const {
     handleSubmit,
     register,
@@ -19,9 +20,10 @@ export default function ReviewForm({ game, handleDismiss }) {
   const supabase = createClientComponentClient();
 
   async function postReview(data) {
+    setIsLoading(true);
+    const { data: { user }} = await supabase.auth.getUser();
     if (!data) return <Spinner />;
     const posted = new Date();
-    console.log(user)
     const review = { 
       userId: user.id,
       username: user.username,
@@ -41,7 +43,9 @@ export default function ReviewForm({ game, handleDismiss }) {
       });
       
       const result = await response.json();
-      console.log("Success:", result);
+      
+      setReviews([...reviews, result.review]);
+      setIsLoading(false);
       handleDismiss();
       
     } catch (error) {
@@ -89,7 +93,7 @@ export default function ReviewForm({ game, handleDismiss }) {
       )}
       />
       {errors.rating && <span className={styles.error}>This field is required</span>}
-      <input type="submit" className={styles.submit}/>
+      {isLoading ? <Spinner /> : <input type="submit" className={styles.submit}/>}
     </motion.form>
   )
 }
