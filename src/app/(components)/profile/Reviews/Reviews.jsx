@@ -1,8 +1,8 @@
 import Spinner from '../../Spinner/Spinner';
 import styles from './Reviews.module.css';
 import useSWR from 'swr';
-import { fetcher } from '@/app/helpers/fetcher';
-import { formatDate } from '@/app/helpers/dateHelper';
+import { fetcher } from '../../../helpers/fetcher';
+import { formatDate } from '../../../helpers/dateHelper';
 
 
 export default function Reviews({ user }) {

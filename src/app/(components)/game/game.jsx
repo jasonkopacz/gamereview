@@ -34,7 +34,6 @@ export function Game( { game }) {
 									width={300}
 									height={300}
 									sizes="100vw"
-									// Make the image display full width
 									style={{
 										width: '100%',
 									}}

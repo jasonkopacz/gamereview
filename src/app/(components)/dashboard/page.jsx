@@ -1,12 +1,16 @@
+'use client'
 import { Game } from '../game/game';
 import styles from './page.module.css';
-import { supabase } from "@/app/database";
+import Spinner from '../Spinner/Spinner';
+import { fetcher } from '../../helpers/fetcher'
+import useSWR from 'swr';
 
-export default async function Index() {
-    const { error, data: games} = await supabase
-    .from('games_old')
-    .select('*')
+export default function Index() {
+	const { data, error, isLoading } = useSWR(`/api/games`, fetcher)
+  if (error) return <div>Something went wrong</div>
+  if (isLoading) return <Spinner />
 
+	const games = data.games
     return (
 			<>
 				<h1 className={styles.title}>Popular Titles</h1>

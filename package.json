@@ -24,6 +24,7 @@
     "lodash": "^4.17.21",
     "next": "14.0.4",
     "next-auth": "^4.24.5",
+    "nextjs-progressbar": "^0.0.16",
     "rawger": "^1.3.2",
     "react": "^18",
     "react-dom": "^18",
@@ -35,6 +36,8 @@
     "swr": "^2.2.4"
   },
   "devDependencies": {
+    "@types/node": "20.11.17",
+    "@types/react": "18.2.55",
     "eslint": "^8",
     "eslint-config-next": "14.0.4"
   }

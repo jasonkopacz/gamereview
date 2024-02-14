@@ -7,9 +7,9 @@ import ReviewForm from "../../reviews/ReviewForm/ReviewForm";
 import useSWR from 'swr';
 import Spinner from '../../Spinner/Spinner';
 import Modal from '../../Modal/Modal';
-import useToggle from '@/app/hooks/useToggle';
+import useToggle from '../../../hooks/useToggle';
 import Review from '../../reviews/[reviewId]/page';
-import { capitalizeFirstLetter } from '@/app/helpers/capitalize';
+import { capitalizeFirstLetter } from '../../../helpers/capitalize';
 import { Rating } from 'react-simple-star-rating';
 
 const fetcher = (...args) => fetch(...args).then((res) => res.json())

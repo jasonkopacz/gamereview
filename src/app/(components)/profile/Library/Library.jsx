@@ -1,9 +1,9 @@
 import Spinner from '../../Spinner/Spinner';
 import styles from './Library.module.css';
 import useSWR from 'swr';
-import { fetcher } from '@/app/helpers/fetcher';
+import { fetcher } from '../../../helpers/fetcher'
 import Image from 'next/image';
-import { capitalizeFirstLetter } from '@/app/helpers/capitalize';
+import { capitalizeFirstLetter } from '../../../helpers/capitalize'
 import Link from 'next/link';
 
 export default function Library({ user }) {

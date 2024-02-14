@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import { Sun, Moon } from 'react-feather';
 import Cookie from 'js-cookie';
 import Link from 'next/link';
-
+import NextNProgress from 'nextjs-progressbar'
 import {
   COLOR_THEME_COOKIE_NAME,
   LIGHT_TOKENS,
@@ -51,6 +51,7 @@ function Header({
       className={clsx(styles.wrapper, className)}
       {...delegated}
     >
+      <NextNProgress />
       <div className={styles.actions}>
         <Link href="/" className={styles.action} > Home </ Link >
         <button
