@@ -1,0 +1,17 @@
+.header {}
+
+.table {
+  width: 100vw;
+}
+
+.gameContainer {
+  width: fit-content;
+}
+
+.gameImage {
+  height: 50px;
+}
+
+.column {
+  text-align: center;
+}

@@ -1,0 +1,36 @@
+.container {
+  /* display: flex;
+  justify-content: space-evenly;
+  align-items: center; */
+}
+
+.title {
+  text-align: center;
+}
+
+.review {
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+  overflow-wrap: break-word;
+  align-items: center;
+  border-bottom: 1px solid var(--color-decorative-300);
+}
+
+.table {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+}
+
+.tableHeader {
+  display: flex;
+  justify-content: space-evenly;
+  border-bottom: 1px solid var(--color-decorative-300);
+}
+
+.column {
+  width: 33%;
+  text-align: center;
+  font-size: larger;
+}

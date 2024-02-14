@@ -1,13 +1,7 @@
 import { Rating } from "react-simple-star-rating";
 import styles from './page.module.css'
-
+import {formatDate } from '../../../helpers/dateHelper'
 export default function Review({ review }) {
-  function formatDate(date) {
-    return new Date(date).toLocaleDateString('en-us', { weekday:"long", year:"numeric", month:"short", day:"numeric"})
-  }
-
-  console.log(review)
-
 
   return (
     <li className={styles.wrapper}>

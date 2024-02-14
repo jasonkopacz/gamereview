@@ -35,7 +35,7 @@ export async function POST(req) {
           posted: review.posted 
         }
       ])
-      console.log(response)
+
       return NextResponse.json({review: review}, { status: 200 })
     } catch (error) {
       return NextResponse.json({error: error}, {status: 404 })
