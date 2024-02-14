@@ -2,6 +2,7 @@
 import styles from './page.module.css'
 import AuthForm from './auth/auth-form'
 import Cookies from 'js-cookie'
+import { COLOR_THEME_COOKIE_NAME } from './constants'
 
 export default function Home() {
 const darkMode = Cookies.get(COLOR_THEME_COOKIE_NAME) === 'light' ? 'default' : 'dark'
