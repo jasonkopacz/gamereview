@@ -9,6 +9,7 @@ import { COLOR_THEME_COOKIE_NAME } from '../constants'
 export default function AuthForm() {
   const supabase = createClientComponentClient()
   const darkMode = Cookies.get(COLOR_THEME_COOKIE_NAME) === 'light' ? 'default' : 'dark'
+  const URL = process.env.NEXT_PUBLIC_SUPABASE_REDIRECT_URL;
   return (
     <>
       <Auth
@@ -18,7 +19,7 @@ export default function AuthForm() {
         theme={darkMode}
         showLinks={false}
         providers={['google']}
-        redirectTo="http://localhost:3000/auth/callback"
+        redirectTo={`https://gamereview-p4fkfqqd7-alaizard.vercel.app/auth/callback`}
         />
     </>
   )

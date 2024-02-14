@@ -13,8 +13,8 @@ import {
   DARK_TOKENS,
 } from './constants';
 
-import Header from './(components)/header/Header';
-import Footer from './(components)/footer/Footer';
+import Header from './(components)/Header/Header';
+import Footer from './(components)/Footer/Footer';
 import RespectMotionPreferences from './(components)/RespectMotionPreferences/RespectMotionPreferences';
 
 import './styles.css';
