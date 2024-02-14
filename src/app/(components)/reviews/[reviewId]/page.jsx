@@ -1,6 +1,7 @@
 import { Rating } from "react-simple-star-rating";
 import styles from './page.module.css'
 import {formatDate } from '../../../helpers/dateHelper'
+
 export default function Review({ review }) {
 
   return (
