@@ -1,13 +1,10 @@
-'use client'
-import React from 'react'
+import { createClient } from '@supabase/supabase-js'
 import { Auth } from '@supabase/auth-ui-react'
 import { ThemeSupa } from '@supabase/auth-ui-shared'
-import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
-import Cookies from 'js-cookie'
 import { COLOR_THEME_COOKIE_NAME } from '../constants'
 
 export default function AuthForm() {
-  const supabase = createClientComponentClient()
+  const supabase = createClient(process.env.PROJECT_URL, process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY)
   const darkMode = Cookies.get(COLOR_THEME_COOKIE_NAME) === 'light' ? 'default' : 'dark'
   const URL = process.env.NEXT_PUBLIC_SUPABASE_REDIRECT_URL;
   return (
