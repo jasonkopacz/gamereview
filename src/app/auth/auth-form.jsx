@@ -19,7 +19,7 @@ export default function AuthForm() {
         theme={darkMode}
         showLinks={false}
         providers={['google']}
-        redirectTo={`https://gamereview-p4fkfqqd7-alaizard.vercel.app/auth/callback`}
+        redirectTo={URL}
         />
     </>
   )
