@@ -15,6 +15,8 @@ export default function AuthForm({darkMode}) {
         theme={darkMode}
         showLinks={false}
         providers={['google']}
+        socialLayout="horizontal"
+        socialButtonSize="xlarge"
         redirectTo={URL}
         />
     </>

@@ -19,7 +19,6 @@ import RespectMotionPreferences from './(components)/RespectMotionPreferences/Re
 
 import './styles.css';
 import Cookies from 'js-cookie';
-import NextNProgress from 'nextjs-progressbar';
 
 const mainFont = Teko({
   subsets: ['latin'],

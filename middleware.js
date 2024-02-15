@@ -24,5 +24,7 @@ export const config = {
      * - favicon.ico (favicon file)
      */
     '/((?!_next/static|_next/image|favicon.ico).*)',
+    '/', 
+    '/dashboard'
   ],
 }
