@@ -10,7 +10,7 @@ export default function Home() {
   return (
     <main className={styles.main}>
       <div className={styles.container}>
-        <SignIn />
+        <SignIn redirectUrl="/dashboard" />
         <h1>The Game Review</h1>
       </div>
     </main>
