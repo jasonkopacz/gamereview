@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@clerk/nextjs": "^4.29.7",
     "@radix-ui/react-tabs": "^1.0.4",
     "@rive-app/react-canvas": "^4.7.1",
     "@supabase/auth-helpers-nextjs": "^0.8.7",
@@ -33,6 +34,7 @@
     "react-hook-form": "^7.50.0",
     "react-remove-scroll": "^2.5.7",
     "react-simple-star-rating": "^5.1.7",
+    "svix": "^1.19.0",
     "swr": "^2.2.4"
   },
   "devDependencies": {

@@ -1,27 +1,34 @@
-'use client'
-import React from 'react';
-import styles from './page.module.css';
-import * as Tabs from '@radix-ui/react-tabs';
-import Spinner from '../Spinner/Spinner';
-import useSWR from 'swr';
-import { fetcher } from '../../helpers/fetcher';
-import Library from './Library/Library';
-import Reviews from './Reviews/Reviews';
+"use client";
+import React from "react";
+import styles from "./page.module.css";
+import * as Tabs from "@radix-ui/react-tabs";
+import Spinner from "../Spinner/Spinner";
+import useSWR from "swr";
+import { fetcher } from "../../helpers/fetcher";
+import Library from "./Library/Library";
+import Reviews from "./Reviews/Reviews";
+import { useUser } from "@clerk/nextjs";
 
 export default function Account() {
-  const { data, error } = useSWR('/api/user', fetcher);
+  const { isSignedIn, user, isLoaded } = useUser();
 
-  if (error) return <div>failed to load</div>;
+  const { data, error } = useSWR(`/api/profile/${user.username}`, fetcher);
+  if (!isLoaded) {
+    return <Spinner />;
+  }
+  if (error) return console.log(error);
   if (!data) return <Spinner />;
+  console.log(data);
 
-  const user = data.user
-  console.log(user)
   return (
     <>
       <div className={styles.container}>
         <header className={styles.header}>
-          <Tabs.Root className={styles.tabsRoot} defaultValue="tab1">
-            <Tabs.List aria-label="Profile Overview" className={styles.tabsList}>
+          <Tabs.Root className={styles.tabsRoot} defaultValue="tab2">
+            <Tabs.List
+              aria-label="Profile Overview"
+              className={styles.tabsList}
+            >
               <Tabs.Trigger className={styles.tabsTrigger} value="tab1">
                 Library
               </Tabs.Trigger>
@@ -31,14 +38,14 @@ export default function Account() {
             </Tabs.List>
 
             <Tabs.Content className={styles.tabsContent} value="tab1">
-              <Library user={user} />
+              <Library profile={user} />
             </Tabs.Content>
             <Tabs.Content className={styles.tabsContent} value="tab2">
-              <Reviews user={user} />
+              <Reviews profile={user} />
             </Tabs.Content>
           </Tabs.Root>
         </header>
       </div>
     </>
-  )
+  );
 }
