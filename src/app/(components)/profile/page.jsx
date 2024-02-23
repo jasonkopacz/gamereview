@@ -18,7 +18,6 @@ export default function Account() {
   }
   if (error) return console.log(error);
   if (!data) return <Spinner />;
-  console.log(data);
 
   return (
     <>
@@ -38,10 +37,10 @@ export default function Account() {
             </Tabs.List>
 
             <Tabs.Content className={styles.tabsContent} value="tab1">
-              <Library profile={user} />
+              <Library profile={data.profile} />
             </Tabs.Content>
             <Tabs.Content className={styles.tabsContent} value="tab2">
-              <Reviews profile={user} />
+              <Reviews profile={data.profile} />
             </Tabs.Content>
           </Tabs.Root>
         </header>
