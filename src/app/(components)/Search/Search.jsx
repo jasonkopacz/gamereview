@@ -13,7 +13,12 @@ const searchClient = algoliasearch(
   "0c30af18ea1cc20f3fb81e8f98ede5db"
 );
 
-const index = searchClient.initIndex("one");
+const index = searchClient.initIndex("games");
+const replicaIndex = searchClient.initIndex("games_release_date_desc");
+
+replicaIndex.setSettings({
+  customRanking: ["desc(rating)"]
+});
 
 export function Hit({ hit }) {
   return (
@@ -24,20 +29,8 @@ export function Hit({ hit }) {
         height={300}
         width={300}
       />
-      {hit.genres.map((genre, i) => (
-        <p key={i}>{genre}</p>
-      ))}
-      {hit.tags.map((tag, i) => (
-        <p key={i}>{tag}</p>
-      ))}
-      {hit.platforms.map((platform, i) => (
-        <p key={i}>{platform}</p>
-      ))}
-      <p>{hit.released}</p>
-      <p>{hit.esrb_rating}</p>
-      <p>{hit.rating}</p>
-      <p>{hit.metacritic}</p>
-      <Highlight attribute="title" hit={hit} />
+      <h1>{hit.name}</h1>
+      <Highlight attribute="name" hit={hit} />
       <p>${hit.release_date}</p>
     </article>
   );
@@ -45,11 +38,32 @@ export function Hit({ hit }) {
 
 export default function Search() {
   return (
-    <InstantSearch searchClient={searchClient} indexName="one">
+    <InstantSearch
+      searchClient={searchClient}
+      indexName="games_release_date_desc"
+    >
+      <RelevantSort isRelevantSorted={true} />
       <RefinementList attribute="genres" />
-      <RefinementList attribute="tags" />
       <SearchBox />
       <Hits hitComponent={Hit} />
     </InstantSearch>
+  );
+}
+
+import { useConnector } from "react-instantsearch";
+import connectRelevantSort from "instantsearch.js/es/connectors/relevant-sort/connectRelevantSort";
+
+export function useRelevantSort(props) {
+  return useConnector(connectRelevantSort, props);
+}
+
+export function RelevantSort(props) {
+  const { isRelevantSorted, refine } = useRelevantSort(props);
+  const relevancyStrictness = isRelevantSorted ? 0 : undefined;
+
+  return (
+    <button type="button" onClick={() => refine(relevancyStrictness)}>
+      {isRelevantSorted ? "See all results" : "See relevant results"}
+    </button>
   );
 }
