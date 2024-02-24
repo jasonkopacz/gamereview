@@ -7,22 +7,22 @@ import useSWR from "swr";
 import Search from "../Search/Search";
 
 export default function Index() {
-  const { data, error, isLoading } = useSWR(`/api/games`, fetcher);
-  if (error) return <div>Something went wrong</div>;
-  if (isLoading) return <Spinner />;
+  // const { data, error, isLoading } = useSWR(`/api/games`, fetcher);
+  // if (error) return <div>Something went wrong</div>;
+  // if (isLoading) return <Spinner />;
 
-  const games = data.games;
+  // const games = data.games;
   return (
     <>
       <Search />
       <h1 className={styles.title}>Popular Titles</h1>
-      <ul className={styles.wrapper}>
-        {games.map((game) => (
+      {/* <ul className={styles.wrapper}> */}
+      {/* {games.map((game) => (
           <li className={styles.item} key={game.id}>
             <Game game={game} />
           </li>
-        ))}
-      </ul>
+        ))} */}
+      {/* </ul> */}
     </>
   );
 }
