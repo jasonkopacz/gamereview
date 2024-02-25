@@ -15,8 +15,9 @@ const searchClient = algoliasearch(
 
 const index = searchClient.initIndex("games");
 const replicaIndex = searchClient.initIndex("games_release_date_desc");
-
-replicaIndex.setSettings({
+index.setSettings({
+  distinct: 1,
+  attributeForDistinct: "name",
   customRanking: ["desc(rating)"]
 });
 
@@ -31,17 +32,15 @@ export function Hit({ hit }) {
       />
       <h1>{hit.name}</h1>
       <Highlight attribute="name" hit={hit} />
-      <p>${hit.release_date}</p>
+      <p>{hit.released}</p>
+      <p>{hit.rating}</p>
     </article>
   );
 }
 
 export default function Search() {
   return (
-    <InstantSearch
-      searchClient={searchClient}
-      indexName="games_release_date_desc"
-    >
+    <InstantSearch searchClient={searchClient} indexName="games">
       <RelevantSort isRelevantSorted={true} />
       <RefinementList attribute="genres" />
       <SearchBox />
