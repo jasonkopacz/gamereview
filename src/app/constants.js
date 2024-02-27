@@ -26,7 +26,7 @@ export const LIGHT_COLORS = {
   "--color-gray-700": "hsl(50deg 10% 25%)",
   "--color-gray-900": "hsl(50deg 20% 10%)",
   "--color-gray-1000": "hsl(352deg, 98%, 50%)",
-  "--color-brand": "hsl(352deg, 98%, 50%)"
+  "--color-brand": "red"
 };
 
 export const DARK_COLORS = {
@@ -54,7 +54,7 @@ export const DARK_COLORS = {
   "--color-gray-700": "hsl(256deg 10% 75%)",
   "--color-gray-900": "hsl(256deg 20% 90%)",
   "--color-gray-1000": "white",
-  "--color-brand": "hsl(352deg, 98%, 50%)"
+  "--color-brand": "red"
 };
 
 // Add in semantic / special colors

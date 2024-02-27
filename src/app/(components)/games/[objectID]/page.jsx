@@ -11,7 +11,7 @@ import useToggle from "../../../hooks/useToggle";
 import Review from "../../reviews/[reviewId]/page";
 import { capitalizeFirstLetter } from "../../../helpers/capitalize";
 import { Rating } from "react-simple-star-rating";
-import { searchIndex } from "../../Search/Search";
+import { searchIndex } from "../../Search/searchClient";
 
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
 

@@ -1,4 +1,5 @@
 "use client";
+import React from "react";
 import { Game } from "../game/game";
 import styles from "./page.module.css";
 import Spinner from "../Spinner/Spinner";
@@ -15,7 +16,6 @@ export default function Index() {
   return (
     <>
       <Search />
-      <h1 className={styles.title}>Popular Titles</h1>
       {/* <ul className={styles.wrapper}> */}
       {/* {games.map((game) => (
           <li className={styles.item} key={game.id}>

@@ -1,24 +1,24 @@
 .wrapper {
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: space-between;
-  }
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+}
 
-  .item {
-    display: flex;
-    justify-content: center;
-    flex: 1 1 25%;
-    margin: 10px;
-    text-align: center;
-  }
-  
-  .title {
-    display: flex;
-    justify-content: center;
-  }
+.item {
+  display: flex;
+  justify-content: center;
+  flex: 1 1 25%;
+  margin: 10px;
+  text-align: center;
+}
 
-  @media (max-width: 1200px) {
-    .wrapper {
-      flex-direction: column;
-    }
+.title {
+  display: flex;
+  justify-content: center;
+}
+
+@media (max-width: 1200px) {
+  .wrapper {
+    flex-direction: column;
   }
+}
