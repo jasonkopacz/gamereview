@@ -7,8 +7,8 @@
   width: 100%;
   padding: 0 var(--viewport-padding);
   margin-right: auto;
-  background-color: var(--color-background);
-  border-bottom: 1px solid var(--color-decorative-100);
+  background-color: var(--color-brand);
+  border-bottom: 1px solid var(--color-decorative-900);
 }
 
 .actions {
@@ -33,7 +33,7 @@
   height: fit-content;
   align-items: center;
   border-radius: 1000px;
-  color: var(--color-text);
+  color: var(--color-primary-contrast);
   cursor: pointer;
   transition: background 200ms;
 }
