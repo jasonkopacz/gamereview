@@ -7,6 +7,7 @@ import Link from "next/link";
 import { UserButton } from "@clerk/nextjs";
 import VisuallyHidden from "../VisuallyHidden/VisuallyHidden";
 import styles from "./Header.module.css";
+import { dark, neobrutalism } from "@clerk/themes";
 
 import {
   COLOR_THEME_COOKIE_NAME,
@@ -34,6 +35,8 @@ function Header({ initialTheme, className, ...delegated }) {
     });
   }
 
+  const clerkTheme = theme === "light" ? neobrutalism : dark;
+
   return (
     <header className={clsx(styles.wrapper, className)} {...delegated}>
       <div className={styles.actions}>
@@ -55,7 +58,12 @@ function Header({ initialTheme, className, ...delegated }) {
           {" "}
           Profile{" "}
         </Link>
-        <UserButton />
+        <UserButton
+          appearance={{
+            baseTheme: clerkTheme,
+            variables: { colorPrimary: "red" }
+          }}
+        />
       </div>
     </header>
   );

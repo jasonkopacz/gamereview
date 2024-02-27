@@ -38,7 +38,6 @@ async function RootLayout({ children }) {
   const savedTheme = cookies().get(COLOR_THEME_COOKIE_NAME);
   const theme = savedTheme?.value || "light";
   Cookies.set(COLOR_THEME_COOKIE_NAME, savedTheme?.value || "light");
-
   return (
     <ClerkProvider>
       <RespectMotionPreferences>
