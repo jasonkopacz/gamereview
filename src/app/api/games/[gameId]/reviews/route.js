@@ -4,12 +4,14 @@ import { cookies } from "next/headers";
 
 export async function GET(req, { params: { gameId } }) {
   const supabase = createServerComponentClient({ cookies });
+  console.log(gameId);
   if (req.method === "GET") {
     try {
       const { data, error } = await supabase
         .from("reviews")
-        .select("*, profile:profile_id(username)")
+        .select("*")
         .eq("game_id", gameId);
+      console.log(data);
       return NextResponse.json({ reviews: data }, { status: 200 });
     } catch (error) {
       return NextResponse.json({ error: error }, { status: 404 });

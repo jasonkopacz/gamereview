@@ -1,32 +1,52 @@
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
-import { NextResponse } from 'next/server'
+import { NextResponse } from "next/server";
 
-export async function GET(req, {params: {gameId}}) {
-  const supabase = createServerComponentClient({ cookies });
-  if (req.method === 'GET') {
+export async function GET(req, { params: { name } }) {
+  // const supabase = createServerComponentClient({ cookies });
+  if (req.method === "GET") {
     const { data, error } = await supabase
-    .from('games_old')
-    .select(`
+      .from("games_old")
+      .select(
+        `
       *,
       reviews:reviews(*)
-    `)
-    .eq('id', gameId)
-    .single();
-    
-    return NextResponse.json({game: data}, { status: 200 })
+    `
+      )
+      .eq("id", gameId)
+      .single();
+
+    return NextResponse.json({ game: data }, { status: 200 });
   }
-  return NextResponse.json({error: error}, {status: 404 })
+  return NextResponse.json({ error: error }, { status: 404 });
 }
 
-export async function POST(req, {params: {profileId, username, gameId, review: {reviewText, rating, posted, updated}}}) {
-  if (req.method === 'POST') {
-    const { data, error } = await supabase
-    .from('reviews')
-    .insert([
-      { profile_id: profileId, username: username, game_id: gameId, review_text: reviewText, rating: rating, posted: posted, updated: updated }
-    ])
-    return NextResponse.json({review: data}, { status: 200 })
+export async function POST(
+  req,
+  {
+    params: {
+      profileId,
+      username,
+      gameId,
+      review: { reviewText, rating, posted, updated }
+    }
   }
-  return NextResponse.json({error: error}, {status: 404 })
+) {
+  if (req.method === "POST") {
+    const { data, error } = await supabase
+      .from("reviews")
+      .insert([
+        {
+          profile_id: profileId,
+          username: username,
+          game_id: gameId,
+          review_text: reviewText,
+          rating: rating,
+          posted: posted,
+          updated: updated
+        }
+      ]);
+    return NextResponse.json({ review: data }, { status: 200 });
+  }
+  return NextResponse.json({ error: error }, { status: 404 });
 }

@@ -11,24 +11,25 @@ import useToggle from "../../../hooks/useToggle";
 import Review from "../../reviews/[reviewId]/page";
 import { capitalizeFirstLetter } from "../../../helpers/capitalize";
 import { Rating } from "react-simple-star-rating";
+import { searchIndex } from "../../Search/Search";
 
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
-export default function Game({ params: { gameId } }) {
+export default function Game({ params: { objectID } }) {
   const [reviews, setReviews] = React.useState([]);
+  const [game, setGame] = React.useState({});
   const [isModalOpen, toggleIsModalOpen] = useToggle(false);
+  const [Loading, setLoading] = React.useState(true);
 
-  console.log(gameId);
-  const { data, error, isLoading } = useSWR(`/api/games/${gameId}`, fetcher);
   React.useEffect(() => {
-    if (data && data.game && data.game.reviews) {
-      setReviews(data.game.reviews);
-    }
-  }, [data]);
-
-  if (error) return <div>Something went wrong</div>;
-  if (isLoading) return <Spinner />;
-  let game = data.game;
+    searchIndex.getObject(objectID).then((game) => {
+      if (game) setGame(game);
+    });
+    fetch(`/api/games/${objectID}/reviews`)
+      .then((response) => response.json())
+      .then((data) => setReviews(data.reviews));
+    setLoading(false);
+  }, []);
 
   return (
     <>
@@ -50,10 +51,8 @@ export default function Game({ params: { gameId } }) {
             >{`Metacritic Score: ${game.metacritic}`}</p>
             <p
               className={styles.headerItem}
-            >{`ESRB Rating: ${capitalizeFirstLetter(game.esrb_rating)}`}</p>
-            <p
-              className={styles.headerItem}
-            >{`${game.reviews_text_count} Reviews`}</p>
+            >{`ESRB Rating: ${game.esrb_rating}`}</p>
+            <p className={styles.headerItem}>{`${reviews.length} Reviews`}</p>
           </div>
           <button className={styles.action} onClick={toggleIsModalOpen}>
             Add review

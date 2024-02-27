@@ -30,22 +30,22 @@ export default function ReviewForm({
     `/api/profile/${user.username}`,
     fetcher
   );
-  console.log(data);
+
   async function postReview(reviewData) {
     setIsLoading(true);
     if (!reviewData) return <Spinner />;
-    console.log(user);
+
     const review = {
       userId: data.profile.id,
       username: data.profile.username,
-      gameId: game.id,
+      gameId: game.objectID,
       reviewText: reviewData.reviewText,
       rating: reviewData.rating,
       posted: new Date()
     };
 
     try {
-      const response = await fetch(`/api/games/${game.id}/reviews`, {
+      const response = await fetch(`/api/games/${game.objectID}/reviews`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
