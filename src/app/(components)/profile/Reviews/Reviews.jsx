@@ -18,18 +18,20 @@ export default function Reviews({ profile }) {
     <>
       <section className={styles.container}>
         <table className={styles.table}>
-          <tr className={styles.tableHeader}>
-            <th>Review</th>
-            <th>Rating</th>
-            <th>Posted</th>
-          </tr>
-          {reviews.map((review) => (
-            <tr className={styles.review} key={review.id}>
-              <td className={styles.column}>{review.review_text}</td>
-              <td className={styles.column}>{review.rating}</td>
-              <td className={styles.column}>{formatDate(review.posted)}</td>
+          <tbody>
+            <tr className={styles.tableHeader}>
+              <th>Review</th>
+              <th>Rating</th>
+              <th>Posted</th>
             </tr>
-          ))}
+            {reviews.map((review) => (
+              <tr className={styles.review} key={review.id}>
+                <td className={styles.column}>{review.review_text}</td>
+                <td className={styles.column}>{review.rating}</td>
+                <td className={styles.column}>{formatDate(review.posted)}</td>
+              </tr>
+            ))}
+          </tbody>
         </table>
       </section>
     </>

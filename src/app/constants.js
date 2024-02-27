@@ -10,7 +10,7 @@ export const LIGHT_COLORS = {
   "--color-primary-900": "white",
   "--color-primary-contrast": "white",
   "--color-secondary-500": "gray",
-  "--color-decorative-100": "hsl(352deg, 98%, 50%)",
+  "--color-decorative-100": "black",
   "--color-decorative-200": "hsl(352deg, 98%, 50%)",
   "--color-decorative-300": "hsl(352deg, 98%, 50%)",
   "--color-decorative-500": "hsl(352deg, 98%, 50%)",
@@ -26,7 +26,8 @@ export const LIGHT_COLORS = {
   "--color-gray-700": "hsl(50deg 10% 25%)",
   "--color-gray-900": "hsl(50deg 20% 10%)",
   "--color-gray-1000": "hsl(352deg, 98%, 50%)",
-  "--color-brand": "red"
+  "--color-brand": "red",
+  "--color-opposite": "black"
 };
 
 export const DARK_COLORS = {
@@ -54,7 +55,8 @@ export const DARK_COLORS = {
   "--color-gray-700": "hsl(256deg 10% 75%)",
   "--color-gray-900": "hsl(256deg 20% 90%)",
   "--color-gray-1000": "white",
-  "--color-brand": "red"
+  "--color-brand": "red",
+  "--color-opposite": "white"
 };
 
 // Add in semantic / special colors

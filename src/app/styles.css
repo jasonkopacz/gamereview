@@ -52,17 +52,11 @@ html {
 
 /* GLOBAL STYLES */
 ::selection {
-  background-color: var(
-    --color-selection-background
-  ) !important;
+  background-color: var(--color-selection-background) !important;
   color: var(--color-selection-text) !important;
   background-image: none !important;
-  -webkit-text-fill-color: var(
-    --color-selection-text
-  ) !important;
-  -moz-text-fill-color: var(
-    --color-selection-text
-  ) !important;
+  -webkit-text-fill-color: var(--color-selection-text) !important;
+  -moz-text-fill-color: var(--color-selection-text) !important;
   background-image: none !important;
   background-clip: revert !important;
   -webkit-background-clip: revert !important;
@@ -86,7 +80,7 @@ body {
 }
 
 body::before {
-  content: '';
+  content: "";
   position: absolute;
   z-index: 0;
   top: 0;
@@ -142,7 +136,7 @@ p code {
 }
 a {
   color: currentColor;
-  text-decoration-color: var(--color-primary);
+  text-decoration-color: var(--color-decorative-600);
   text-decoration-thickness: 2px;
   text-underline-offset: 0.125em;
   font-weight: 500;

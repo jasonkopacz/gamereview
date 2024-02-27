@@ -39,7 +39,7 @@
   justify-content: center;
   font-size: 15px;
   line-height: 1;
-  color: var(--color-decorative-300);
+  color: var(--color-decorative-900);
   user-select: none;
 }
 .tabsTrigger:first-child {
@@ -51,7 +51,7 @@
 .tabsTrigger:hover {
   color: var(--violet-11);
 }
-.tabsTrigger[data-state='active'] {
+.tabsTrigger[data-state="active"] {
   color: var(--color-decorative-900);
   box-shadow: inset 0 -1px 0 0 currentColor, 0 1px 0 0 currentColor;
 }
