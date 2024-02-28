@@ -4,12 +4,6 @@ import { supabase } from "@/app/database";
 import { auth } from "@clerk/nextjs";
 import { buffer } from "micro";
 
-export const config = {
-  api: {
-    bodyParser: false
-  }
-};
-
 export async function POST(req) {
   console.log("WEBHOOK");
   const { getToken } = auth();
