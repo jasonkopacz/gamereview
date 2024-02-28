@@ -31,7 +31,7 @@ const monoFont = Spline_Sans_Mono({
 
 export const metadata = {
   title: BLOG_TITLE,
-  description: "BIG DAWG STATUS"
+  description: "The Game Review"
 };
 
 async function RootLayout({ children }) {
