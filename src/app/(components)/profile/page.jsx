@@ -8,12 +8,17 @@ import { fetcher } from "../../helpers/fetcher";
 import Library from "./Library/Library";
 import Reviews from "./Reviews/Reviews";
 import { useUser } from "@clerk/nextjs";
+import { NextResponse } from "next/server";
 
 export default function Account() {
   const { isSignedIn, user, isLoaded } = useUser();
   const swrKey =
     isLoaded && isSignedIn && user ? `/api/profile/${user.username}` : null;
   const { data, error } = useSWR(swrKey, fetcher);
+  if (!isSignedIn)
+    return NextResponse.redirect("/", {
+      status: 301
+    });
   if (!isLoaded) {
     return <Spinner />;
   }

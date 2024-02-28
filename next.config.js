@@ -1,7 +1,13 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ["media.rawg.io", "image.tmdb.org"]
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "media.rawg.io",
+        pathname: "**"
+      }
+    ]
   }
 };
 

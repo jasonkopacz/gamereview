@@ -5,36 +5,52 @@ import {
   RefinementList
 } from "react-instantsearch";
 import Image from "next/image";
-import { Highlight } from "react-instantsearch";
 import styles from "./Search.module.css";
 import Link from "next/link";
 import { searchClient } from "./searchClient";
-import { RatingMenu } from "./RatingMenu";
+import Modal from "../Modal/Modal";
+import { Menu } from "react-feather";
+import useToggle from "@/app/hooks/useToggle";
 
 export function Hit({ hit }) {
+  const priority = hit.orderNumber === 0 ? true : false;
+  const loading = priority ? "eager" : "lazy";
+
   return (
-    <Link href={`/games/${hit.objectID}`}>
-      <Image
-        src={hit.background_image}
-        alt={hit.name}
-        width={300}
-        height={300}
-        sizes="100vw"
-        style={{
-          width: "70%",
-          height: "auto"
-        }}
-        loading="lazy"
-        className={styles.image}
-      />
-      <h1>{hit.name}</h1>
+    <>
+      <Link href={`/games/${hit.objectID}`}>
+        <Image
+          src={hit.background_image}
+          alt={hit.name}
+          width={300}
+          height={300}
+          href={`/games/${hit.objectID}`}
+          sizes="100vw"
+          style={{
+            width: "70%",
+            height: "auto"
+          }}
+          priority={priority}
+          loading={loading}
+          className={styles.image}
+        />
+      </Link>
+      <Link href={`/games/${hit.objectID}`} className={styles.link}>
+        <h1>{hit.name}</h1>
+      </Link>
       <p>{hit.released}</p>
       <p>{hit.rating} / 5</p>
-    </Link>
+    </>
   );
 }
-
+const transformItems = (items) => {
+  return items.map((item, i) => ({
+    ...item,
+    orderNumber: i
+  }));
+};
 export default function Search() {
+  const [isModalOpen, toggleIsModalOpen] = useToggle(false);
   return (
     <div className={styles.wrapper}>
       <InstantSearch
@@ -46,6 +62,29 @@ export default function Search() {
         }}
         className={styles.search}
       >
+        <button className={styles.action} onClick={toggleIsModalOpen}>
+          <Menu />
+        </button>
+        {isModalOpen && (
+          <Modal
+            title="sidebar"
+            handleDismiss={toggleIsModalOpen}
+            className={`mobileSidebar ${isModalOpen ? "open" : "closed"}`}
+          >
+            <label htmlFor="genres">Genres</label>
+            <RefinementList
+              id="genres"
+              attribute="genres"
+              className={styles.sidebarItem}
+            />
+            <label htmlFor="tags">Tags</label>
+            <RefinementList
+              id="tags"
+              attribute="tags"
+              className={styles.sidebarItem}
+            />
+          </Modal>
+        )}
         <div className={styles.sidebar}>
           <label className="label" htmlFor="genres">
             Genres
@@ -69,7 +108,11 @@ export default function Search() {
             placeholder="Search for games"
             className={styles.searchBox}
           />
-          <Hits hitComponent={Hit} className={styles.hit}></Hits>
+          <Hits
+            hitComponent={Hit}
+            transformItems={transformItems}
+            className={styles.hit}
+          ></Hits>
         </div>
       </InstantSearch>
       <div className={styles.rightBar}></div>
