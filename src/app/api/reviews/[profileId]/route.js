@@ -10,7 +10,7 @@ export async function GET(req, { params }) {
       .select(`*`)
       .eq("profile_id", profileId);
 
-    // console.log(data)
+    if (error) return NextResponse.json({ error: error }, { status: 404 });
 
     return NextResponse.json({ reviews: data }, { status: 200 });
   }

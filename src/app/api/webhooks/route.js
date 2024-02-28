@@ -1,7 +1,7 @@
 import { Webhook } from "svix";
 import { headers } from "next/headers";
 import { supabase } from "@/app/database";
-import { auth } from "@clerk/nextjs";
+
 export async function POST(req) {
   const WEBHOOK_SECRET = process.env.WEBHOOK_SIGNING_SECRET;
 
@@ -52,8 +52,7 @@ export async function POST(req) {
     email,
     avatar_url: image_url
   });
-  if (error) console.log(error);
-  if (data) console.log(data);
+  if (error) return new Response(error, { status: 404 });
 
   return new Response("Profile Created", { status: 200 });
 }

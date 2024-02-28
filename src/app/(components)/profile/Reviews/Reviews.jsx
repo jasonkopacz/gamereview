@@ -12,7 +12,6 @@ export default function Reviews({ profile }) {
   if (!data) return <Spinner />;
   if (error) return <div>{error}</div>;
   const reviews = data.reviews;
-  console.log(data);
 
   return !reviews ? (
     <p>No reviews saved</p>

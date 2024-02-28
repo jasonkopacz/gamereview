@@ -26,14 +26,19 @@ export default function ReviewForm({
   } = useForm();
 
   const { isSignedIn, user, isLoaded } = useUser();
-  const { data, error, loading } = useSWR(
-    `/api/profile/${user.username}`,
-    fetcher
-  );
+  const swrKey =
+    isSignedIn && user && user.username
+      ? `/api/profile/${user.username}`
+      : null;
+
+  const { data, error, loading } = useSWR(swrKey, fetcher);
+  if (!isLoaded) return <Spinner />;
+  if (loading) return <Spinner />;
+  if (error) return <p>{error}</p>;
 
   async function postReview(reviewData) {
-    setIsLoading(true);
     if (!reviewData) return <Spinner />;
+    setIsLoading(true);
 
     const review = {
       userId: data.profile.id,
@@ -65,7 +70,6 @@ export default function ReviewForm({
 
   return (
     <motion.form
-      action={postReview}
       onSubmit={handleSubmit(postReview)}
       className={styles.reviewForm}
       initial={{ opacity: 0 }}

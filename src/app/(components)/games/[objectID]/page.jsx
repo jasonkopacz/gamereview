@@ -1,15 +1,12 @@
 "use client";
 import React from "react";
 import styles from "./page.module.css";
-import Image from "next/image";
 import { Suspense } from "react";
 import ReviewForm from "../../reviews/ReviewForm/ReviewForm";
-import useSWR from "swr";
 import Spinner from "../../Spinner/Spinner";
 import Modal from "../../Modal/Modal";
 import useToggle from "../../../hooks/useToggle";
 import Review from "../../reviews/[reviewId]/page";
-import { capitalizeFirstLetter } from "../../../helpers/capitalize";
 import { Rating } from "react-simple-star-rating";
 import { searchIndex } from "../../Search/searchClient";
 
@@ -19,7 +16,7 @@ export default function Game({ params: { objectID } }) {
   const [reviews, setReviews] = React.useState([]);
   const [game, setGame] = React.useState({});
   const [isModalOpen, toggleIsModalOpen] = useToggle(false);
-  const [Loading, setLoading] = React.useState(true);
+  const [loading, setLoading] = React.useState(true);
 
   React.useEffect(() => {
     searchIndex.getObject(objectID).then((game) => {
@@ -29,8 +26,9 @@ export default function Game({ params: { objectID } }) {
       .then((response) => response.json())
       .then((data) => setReviews(data.reviews));
     setLoading(false);
-  }, []);
+  }, [objectID]);
 
+  if (loading) return <Spinner />;
   return (
     <>
       <Suspense>
@@ -52,7 +50,9 @@ export default function Game({ params: { objectID } }) {
             <p
               className={styles.headerItem}
             >{`ESRB Rating: ${game.esrb_rating}`}</p>
-            <p className={styles.headerItem}>{`${reviews.length} Reviews`}</p>
+            <p className={styles.headerItem}>{`${reviews.length} Review${
+              reviews.length > 1 ? "s" : ""
+            }`}</p>
           </div>
           <button className={styles.action} onClick={toggleIsModalOpen}>
             Add review
