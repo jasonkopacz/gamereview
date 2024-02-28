@@ -8,7 +8,7 @@ import clsx from "clsx";
 import { cookies } from "next/headers";
 import "./styles.css";
 import { Teko, Spline_Sans_Mono } from "next/font/google";
-
+import { DarkModeProvider } from "./contexts/DarkModeContext";
 import {
   BLOG_TITLE,
   COLOR_THEME_COOKIE_NAME,
@@ -39,22 +39,24 @@ async function RootLayout({ children }) {
   const theme = savedTheme?.value || "light";
   Cookies.set(COLOR_THEME_COOKIE_NAME, savedTheme?.value || "light");
   return (
-    <ClerkProvider>
-      <RespectMotionPreferences>
-        <html
-          lang="en"
-          className={clsx(mainFont.variable, monoFont.variable)}
-          data-color-theme={theme}
-          style={theme === "light" ? LIGHT_TOKENS : DARK_TOKENS}
-        >
-          <body>
-            <Header initialTheme={theme} />
-            <main>{children}</main>
-            <Footer />
-          </body>
-        </html>
-      </RespectMotionPreferences>
-    </ClerkProvider>
+    <DarkModeProvider>
+      <ClerkProvider>
+        <RespectMotionPreferences>
+          <html
+            lang="en"
+            className={clsx(mainFont.variable, monoFont.variable)}
+            data-color-theme={theme}
+            style={theme === "light" ? LIGHT_TOKENS : DARK_TOKENS}
+          >
+            <body>
+              <Header initialTheme={theme} />
+              <main>{children}</main>
+              <Footer />
+            </body>
+          </html>
+        </RespectMotionPreferences>
+      </ClerkProvider>
+    </DarkModeProvider>
   );
 }
 

@@ -45,14 +45,6 @@
   flex-direction: column;
 }
 
-.item {
-  display: flex;
-  justify-content: center;
-  flex: 1 1 25%;
-  margin: 10px;
-  text-align: center;
-}
-
 .image {
   border-radius: 10px;
 }

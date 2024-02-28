@@ -1,5 +1,27 @@
+/* page.module.css */
+
+.main {
+  display: flex;
+  justify-content: center;
+  align-items: center; /* Align items vertically */
+  flex-direction: column;
+  min-height: 100vh; /* Make sure the main container takes at least the viewport height */
+  overflow: auto; /* Handle overflow content */
+}
+
 .container {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column; /* Stack children vertically */
+  padding: 20px; /* Add some padding */
+  box-sizing: border-box; /* Include padding and border in the element's total width and height */
+}
+
+/* Additional styles for better appearance and responsiveness */
+@media (max-width: 768px) {
+  .container {
+    width: 80%; /* Full width on smaller screens */
+    padding: 10px; /* Smaller padding on smaller screens */
+  }
 }
