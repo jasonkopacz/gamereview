@@ -11,16 +11,16 @@ import { useUser } from "@clerk/nextjs";
 
 export default function Account() {
   const { isSignedIn, user, isLoaded } = useUser();
+  console.log(user);
   const swrKey =
     isLoaded && isSignedIn && user ? `/api/profile/${user.username}` : null;
-
   const { data, error } = useSWR(swrKey, fetcher);
   if (!isLoaded) {
     return <Spinner />;
   }
-  if (!isLoaded) return <Spinner />;
-  if (error) return console.log(error);
+  if (error) return <p>{error}</p>;
   if (!data) return <Spinner />;
+  console.log(data);
 
   return (
     <>

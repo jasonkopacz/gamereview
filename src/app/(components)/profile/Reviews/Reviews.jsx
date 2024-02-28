@@ -5,12 +5,14 @@ import { fetcher } from "../../../helpers/fetcher";
 import { formatDate } from "../../../helpers/dateHelper";
 
 export default function Reviews({ profile }) {
-  const { data, error } = useSWR(`/api/reviews/${profile.id}`, fetcher);
+  const swrKey = profile && profile.id ? `/api/reviews/${profile.id}` : null;
 
-  if (error) return <div>Failed to load</div>;
+  const { data, error } = useSWR(swrKey, fetcher);
+
   if (!data) return <Spinner />;
+  if (error) return <div>{error}</div>;
   const reviews = data.reviews;
-  console.log(reviews);
+  console.log(data);
 
   return !reviews ? (
     <p>No reviews saved</p>

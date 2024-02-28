@@ -1,19 +1,16 @@
 import { NextResponse } from "next/server";
 import { supabase } from "@/app/database";
 
-export async function GET(req, { params }) {
-  const username = params.username;
+export async function GET(req, { params: { username } }) {
   if (req.method === "GET") {
     if (!username) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
+    console.log(username);
     const { data, error } = await supabase
       .from("profiles")
-      .select(
-        `*
-      `
-      )
+      .select(`*`)
       .eq("username", username)
       .single();
     if (error) console.log(error);
