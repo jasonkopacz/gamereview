@@ -18,10 +18,9 @@
   box-sizing: border-box; /* Include padding and border in the element's total width and height */
 }
 
-/* Additional styles for better appearance and responsiveness */
 @media (max-width: 768px) {
   .container {
-    width: 80%; /* Full width on smaller screens */
+    width: 100%; /* Full width on smaller screens */
     padding: 10px; /* Smaller padding on smaller screens */
   }
 }

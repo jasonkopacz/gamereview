@@ -99,3 +99,21 @@
     transform: none;
   }
 }
+
+.nameAndAdd {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.addButton {
+  margin: 5px;
+  text-align: center;
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+}

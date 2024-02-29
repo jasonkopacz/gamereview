@@ -9,10 +9,21 @@ import styles from "./Search.module.css";
 import Link from "next/link";
 import { searchClient } from "./searchClient";
 import Modal from "../Modal/Modal";
-import { Menu } from "react-feather";
+import { Menu, Plus, PlusCircle } from "react-feather";
 import useToggle from "@/app/hooks/useToggle";
+import VisuallyHidden from "../VisuallyHidden/VisuallyHidden";
 
 export function Hit({ hit }) {
+  async function addToGames(id) {
+    const response = await fetch(`/api/profile/games`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ gameId: id })
+    });
+  }
+
   const priority = hit.orderNumber === 0 ? true : false;
   const loading = priority ? "eager" : "lazy";
 
@@ -35,11 +46,25 @@ export function Hit({ hit }) {
           className={styles.image}
         />
       </Link>
-      <Link href={`/games/${hit.objectID}`} className={styles.link}>
-        <h1>{hit.name}</h1>
-      </Link>
-      <p>{hit.released}</p>
-      <p>{hit.rating} / 5</p>
+      <div className={styles.nameAndAdd}>
+        <Link href={`/games/${hit.objectID}`} className={styles.link}>
+          <h1>{hit.name}</h1>{" "}
+        </Link>
+        {/* <button className={styles.addButton} title="Add To Collection">
+          <Plus />
+        </button> */}
+        <button
+          className={styles.addButton}
+          title="Add to games"
+          onClick={() => addToGames(hit.objectID)}
+        >
+          <PlusCircle />
+          <VisuallyHidden>Add to games</VisuallyHidden>
+        </button>
+      </div>
+      <p>Released: {hit.released}</p>
+      <p>Average Rating: {hit.rating} / 5</p>
+      <p>Metacritic Score: {hit.metacritic} / 100</p>
     </>
   );
 }
@@ -49,7 +74,7 @@ const transformItems = (items) => {
     orderNumber: i
   }));
 };
-export default function Search() {
+export default function Search({ profile }) {
   const [isModalOpen, toggleIsModalOpen] = useToggle(false);
   return (
     <div className={styles.wrapper}>
