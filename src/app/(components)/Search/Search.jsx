@@ -23,7 +23,7 @@ export function Hit({ hit }) {
       body: JSON.stringify({ gameId: id })
     });
   }
-
+  console.log("check");
   const priority = hit.orderNumber === 0 ? true : false;
   const loading = priority ? "eager" : "lazy";
 
