@@ -71,9 +71,12 @@ export function Hit({ hit }) {
 const transformItems = (items) => {
   return items.map((item, i) => ({
     ...item,
-    orderNumber: i
+    orderNumber: i,
+    label: item.label + " ",
+    count: null
   }));
 };
+
 export default function Search({ profile }) {
   const [isModalOpen, toggleIsModalOpen] = useToggle(false);
   return (
@@ -118,6 +121,7 @@ export default function Search({ profile }) {
             id="genres"
             attribute="genres"
             className={styles.sidebarItem}
+            transformItems={transformItems}
           />
           <label className="label" htmlFor="tags">
             Tags
@@ -126,6 +130,7 @@ export default function Search({ profile }) {
             id="tags"
             attribute="tags"
             className={styles.sidebarItem}
+            transformItems={transformItems}
           />
         </div>
         <div className={styles.hits}>
