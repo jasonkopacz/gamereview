@@ -11,5 +11,5 @@ searchIndex.setSettings({
   distinct: 1,
   attributeForDistinct: "name",
   customRanking: ["desc(rating)"],
-  attributesForFaceting: ["genres", "tags", "rating"]
+  attributesForFaceting: ["genres", "searchable(tags)", "rating"]
 });

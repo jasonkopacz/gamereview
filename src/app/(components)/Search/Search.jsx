@@ -23,7 +23,7 @@ export function Hit({ hit }) {
       body: JSON.stringify({ gameId: id })
     });
   }
-  console.log("check");
+
   const priority = hit.orderNumber === 0 ? true : false;
   const loading = priority ? "eager" : "lazy";
 
@@ -68,11 +68,12 @@ export function Hit({ hit }) {
     </>
   );
 }
-const transformItems = (items) => {
+// update to transform tags and transform genres
+const transformItems = (items, results) => {
   return items.map((item, i) => ({
     ...item,
     orderNumber: i,
-    label: item.label + " ",
+    label: " " + item.label + " ",
     count: null
   }));
 };
@@ -90,7 +91,12 @@ export default function Search({ profile }) {
         }}
         className={styles.search}
       >
-        <button className={styles.action} onClick={toggleIsModalOpen}>
+        <VisuallyHidden>Toggle genres and tags</VisuallyHidden>
+        <button
+          className={styles.action}
+          onClick={toggleIsModalOpen}
+          aria-label="genres-and-tags"
+        >
           <Menu />
         </button>
         {isModalOpen && (
@@ -104,12 +110,19 @@ export default function Search({ profile }) {
               id="genres"
               attribute="genres"
               className={styles.sidebarItem}
+              transformItems={transformItems}
+              sortBy={["name:asc"]}
+              limit={"20"}
             />
             <label htmlFor="tags">Tags</label>
             <RefinementList
               id="tags"
               attribute="tags"
               className={styles.sidebarItem}
+              transformItems={transformItems}
+              sortBy={["name:asc"]}
+              searchable={true}
+              searchablePlaceholder="Search for Tags"
             />
           </Modal>
         )}
@@ -122,6 +135,8 @@ export default function Search({ profile }) {
             attribute="genres"
             className={styles.sidebarItem}
             transformItems={transformItems}
+            sortBy={["name:asc"]}
+            limit={"20"}
           />
           <label className="label" htmlFor="tags">
             Tags
@@ -131,6 +146,9 @@ export default function Search({ profile }) {
             attribute="tags"
             className={styles.sidebarItem}
             transformItems={transformItems}
+            sortBy={["name:asc"]}
+            searchable={true}
+            searchablePlaceholder="Search for Tags"
           />
         </div>
         <div className={styles.hits}>
@@ -150,6 +168,27 @@ export default function Search({ profile }) {
   );
 }
 
+// const genres = [
+//   "Action",
+//   "Indie",
+//   "Adventure",
+//   "RPG",
+//   "Strategy",
+//   "Casual",
+//   "Simulation",
+//   "Shooter",
+//   "Puzzle",
+//   "Arcade",
+//   "Platformer",
+//   "Racing",
+//   "Sports",
+//   "Massively Multiplayer",
+//   "Fighting",
+//   "Family",
+//   "Board Games",
+//   "Card",
+//   "Educational"
+// ];
 // {
 //     "name": "The Last Of Us",
 //     "slug": "the-last-of-us",
