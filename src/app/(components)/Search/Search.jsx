@@ -146,7 +146,7 @@ export default function Search({ profile }) {
             attribute="tags"
             className={styles.sidebarItem}
             transformItems={transformItems}
-            sortBy={["name:asc"]}
+            sortBy={["isRefined", "name:asc"]}
             searchable={true}
             searchablePlaceholder="Search for Tags"
           />
