@@ -27,16 +27,7 @@ export default function Reviews({ profile }) {
             </tr>
             {reviews.map((review) => (
               <tr className={styles.review} key={review.id}>
-                <ShowMoreText
-                  lines={3}
-                  more="Show more"
-                  less="Show less"
-                  expanded={false}
-                  width={280}
-                  truncatedEndingComponent={"... "}
-                >
-                  <td className={styles.column}>{review.review_text}</td>
-                </ShowMoreText>
+                <td className={styles.column}>{review.review_text}</td>
                 <td className={styles.column}>{review.rating}</td>
                 <td className={styles.column}>{formatDate(review.posted)}</td>
               </tr>
