@@ -3,7 +3,7 @@ import styles from "./Reviews.module.css";
 import useSWR from "swr";
 import { fetcher } from "../../../helpers/fetcher";
 import { formatDate } from "../../../helpers/dateHelper";
-import ReactShowMoreText from "react-show-more-text";
+import ShowMoreText from "react-show-more-text";
 export default function Reviews({ profile }) {
   const swrKey = profile && profile.id ? `/api/reviews/${profile.id}` : null;
 
@@ -27,7 +27,7 @@ export default function Reviews({ profile }) {
             </tr>
             {reviews.map((review) => (
               <tr className={styles.review} key={review.id}>
-                <ReactShowMoreText
+                <ShowMoreText
                   lines={3}
                   more="Show more"
                   less="Show less"
@@ -36,7 +36,7 @@ export default function Reviews({ profile }) {
                   truncatedEndingComponent={"... "}
                 >
                   <td className={styles.column}>{review.review_text}</td>
-                </ReactShowMoreText>
+                </ShowMoreText>
                 <td className={styles.column}>{review.rating}</td>
                 <td className={styles.column}>{formatDate(review.posted)}</td>
               </tr>
