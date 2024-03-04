@@ -31,10 +31,6 @@ function Header({ initialTheme, className, ...delegated }) {
         </button>
       </div>
       <div className={styles.actions}>
-        <Link href="/dashboard" className={styles.action}>
-          {" "}
-          Dashboard{" "}
-        </Link>
         <Link href="/profile" className={styles.action}>
           {" "}
           Profile{" "}

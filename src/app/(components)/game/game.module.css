@@ -9,11 +9,6 @@
   align-items: center;
   justify-content: center;
   width: 100%;
-  /* background-color: var(background-color);
-  background-image: linear-gradient(
-    to top, transparent, var(--color-backdrop-highlight)
-  );
-  background-repeat: no-repeat; */
 }
 
 .gameName {

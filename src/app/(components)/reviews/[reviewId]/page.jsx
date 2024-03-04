@@ -1,6 +1,7 @@
 import { Rating } from "react-simple-star-rating";
 import styles from "./page.module.css";
 import { formatDate } from "../../../helpers/dateHelper";
+import ShowMoreText from "react-show-more-text";
 
 export default function Review({ review }) {
   return (
@@ -14,7 +15,16 @@ export default function Review({ review }) {
         showTooltip
         className={styles.rating}
       />
-      <p className={styles.review}>{review.review_text}</p>
+      <ShowMoreText
+        lines={3}
+        more="Show more"
+        less="Show less"
+        expanded={false}
+        width={280}
+        truncatedEndingComponent={"... "}
+      >
+        <p className={styles.review}>{review.review_text}</p>
+      </ShowMoreText>
     </li>
   );
 }
