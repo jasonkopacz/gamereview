@@ -53,14 +53,14 @@ export function Hit({ hit }) {
         {/* <button className={styles.addButton} title="Add To Collection">
           <Plus />
         </button> */}
-        <button
+        {/* <button
           className={styles.addButton}
           title="Add to games"
           onClick={() => addToGames(hit.objectID)}
         >
           <PlusCircle />
           <VisuallyHidden>Add to games</VisuallyHidden>
-        </button>
+        </button> */}
       </div>
       <p>Released: {hit.released}</p>
       <p>Average Rating: {hit.rating} / 5</p>
