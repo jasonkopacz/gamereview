@@ -34,9 +34,9 @@ export default function Account() {
               aria-label="Profile Overview"
               className={styles.tabsList}
             >
-              <Tabs.Trigger className={styles.tabsTrigger} value="tab1">
+              {/* <Tabs.Trigger className={styles.tabsTrigger} value="tab1">
                 Library
-              </Tabs.Trigger>
+              </Tabs.Trigger> */}
               <Tabs.Trigger className={styles.tabsTrigger} value="tab2">
                 Reviews
               </Tabs.Trigger>
