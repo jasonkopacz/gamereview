@@ -15,10 +15,7 @@ export default function Account() {
   const swrKey =
     isLoaded && isSignedIn && user ? `/api/profile/${user.username}` : null;
   const { data, error } = useSWR(swrKey, fetcher);
-  if (!isSignedIn)
-    return NextResponse.redirect("/", {
-      status: 301
-    });
+  if (!isSignedIn) NextResponse.redirect("https://thegamereview.vercel.app");
   if (!isLoaded) {
     return <Spinner />;
   }
