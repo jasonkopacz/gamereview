@@ -7,6 +7,10 @@ export default authMiddleware({
       const url = req.nextUrl.clone();
       url.pathname = "/dashboard";
       return NextResponse.redirect(url);
+    } else if (!auth.userId && req.nextUrl.pathname !== "/") {
+      const url = req.nextUrl.clone();
+      url.pathname = "/";
+      return NextResponse.redirect(url);
     }
   },
   publicRoutes: ["/", "/sign-up", "/api/webhooks(.*)"]
