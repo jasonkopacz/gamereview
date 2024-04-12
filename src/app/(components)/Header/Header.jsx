@@ -2,18 +2,12 @@
 import React from "react";
 import clsx from "clsx";
 import { Sun, Moon } from "react-feather";
-import Cookie from "js-cookie";
 import Link from "next/link";
 import { UserButton } from "@clerk/nextjs";
 import VisuallyHidden from "../VisuallyHidden/VisuallyHidden";
 import styles from "./Header.module.css";
 import { dark, neobrutalism } from "@clerk/themes";
 import { useDarkMode } from "@/app/contexts/DarkModeContext";
-import {
-  COLOR_THEME_COOKIE_NAME,
-  LIGHT_TOKENS,
-  DARK_TOKENS
-} from "../../constants";
 
 function Header({ initialTheme, className, ...delegated }) {
   const { darkMode, toggleDarkMode } = useDarkMode();
