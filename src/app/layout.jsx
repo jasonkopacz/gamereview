@@ -49,6 +49,17 @@ async function RootLayout({ children }) {
             style={theme === "light" ? LIGHT_TOKENS : DARK_TOKENS}
           >
             <body>
+              <head>
+                {(process.env.NODE_ENV === "development" ||
+                  process.env.VERCEL_ENV === "preview") && (
+                  // eslint-disable-next-line @next/next/no-sync-scripts
+                  <script
+                    data-project-id="vwxWlvYqdIebWMDfuM4cIXyGYE9vvih6beqOWZY7"
+                    data-is-production-environment="false"
+                    src="https://snippet.meticulous.ai/v1/meticulous.js"
+                  />
+                )}
+              </head>
               <Header initialTheme={theme} />
               <main>{children}</main>
               <Footer />
