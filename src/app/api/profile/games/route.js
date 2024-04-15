@@ -1,5 +1,5 @@
 import { currentUser } from "@clerk/nextjs";
-import { supabase } from "@/app/database";
+import { supabase } from "../../../database";
 
 export async function POST(req) {
   const user = await currentUser();

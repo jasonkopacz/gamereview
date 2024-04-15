@@ -7,7 +7,7 @@ import { UserButton } from "@clerk/nextjs";
 import VisuallyHidden from "../VisuallyHidden/VisuallyHidden";
 import styles from "./Header.module.css";
 import { dark, neobrutalism } from "@clerk/themes";
-import { useDarkMode } from "@/app/contexts/DarkModeContext";
+import { useDarkMode } from "../../contexts/DarkModeContext";
 
 function Header({ initialTheme, className, ...delegated }) {
   const { darkMode, toggleDarkMode } = useDarkMode();

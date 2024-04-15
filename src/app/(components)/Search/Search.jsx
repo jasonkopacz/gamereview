@@ -10,7 +10,7 @@ import Link from "next/link";
 import { searchClient } from "./searchClient";
 import Modal from "../Modal/Modal";
 import { Menu, Plus, PlusCircle } from "react-feather";
-import useToggle from "@/app/hooks/useToggle";
+import useToggle from "../../hooks/useToggle";
 import VisuallyHidden from "../VisuallyHidden/VisuallyHidden";
 
 export function Hit({ hit }) {

@@ -8,7 +8,7 @@ import { motion } from "framer-motion";
 import Spinner from "../../Spinner/Spinner";
 import { useUser } from "@clerk/nextjs";
 import useSWR from "swr";
-import { fetcher } from "@/app/helpers/fetcher";
+import { fetcher } from "../../../helpers/fetcher";
 
 export default function ReviewForm({
   game,

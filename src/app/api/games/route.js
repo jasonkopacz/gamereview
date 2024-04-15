@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { supabase } from "@/app/database";
+import { supabase } from "../../database";
 
 export async function GET(req) {
   if (req.method === "GET") {

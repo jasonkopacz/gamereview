@@ -1,6 +1,6 @@
 import { Webhook } from "svix";
 import { headers } from "next/headers";
-import { supabase } from "@/app/database";
+import { supabase } from "../../database";
 
 export async function POST(req) {
   const WEBHOOK_SECRET = process.env.WEBHOOK_SIGNING_SECRET;

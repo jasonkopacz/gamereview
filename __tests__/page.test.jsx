@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import Page from "../src/app/page";
-import { DarkModeProvider } from "@/app/contexts/DarkModeContext";
+import { DarkModeProvider } from "../src/app/contexts/DarkModeContext";
 import * as ClerkComponents from "@clerk/nextjs";
 
 // Mock the SignIn component from @clerk/nextjs to simplify testing
