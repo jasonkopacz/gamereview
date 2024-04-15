@@ -42,7 +42,8 @@
     "react-show-more-text": "^1.7.1",
     "react-simple-star-rating": "^5.1.7",
     "svix": "^1.19.0",
-    "swr": "^2.2.4"
+    "swr": "^2.2.4",
+    "typescript": "^5.4.5"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^6.4.2",
